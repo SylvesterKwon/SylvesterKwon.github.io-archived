@@ -28,7 +28,7 @@
 <meta property="og:description" content="개요페르마의 소정리(Fermat’s little Theorem, FIT)는 정수론의 근간이 되는 매우 중요한 정리입니다. 페르마의 소정리는 다음과 같습니다.  $p$가 소수라면, $n^{p-1} \equiv (mod\;p)$  쉽게 풀어 설명하면 임의의 소수인 p와, p와 서로소인 수 n의 p-1승을 p로 나눈 나머지는 1이라는 뜻입니다. PS를 하면서도">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2020-07-28T02:02:48.000Z">
-<meta property="article:modified_time" content="2020-07-28T06:20:53.415Z">
+<meta property="article:modified_time" content="2020-07-28T06:22:16.110Z">
 <meta property="article:author" content="ASIX">
 <meta property="article:tag" content="math">
 <meta name="twitter:card" content="summary">
@@ -199,7 +199,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-07-28 11:02:48 / Updated at: 15:20:53" itemprop="dateCreated datePublished" datetime="2020-07-28T11:02:48+09:00">2020-07-28</time>
+              <time title="Post created: 2020-07-28 11:02:48 / Updated at: 15:22:16" itemprop="dateCreated datePublished" datetime="2020-07-28T11:02:48+09:00">2020-07-28</time>
             </span>
 
           
@@ -220,7 +220,10 @@
 <p>쉽게 풀어 설명하면 임의의 소수인 p와, p와 서로소인 수 n의 p-1승을 p로 나눈 나머지는 1이라는 뜻입니다.</p>
 <p>PS를 하면서도 상당히 많이 사용하게 되는 정리이므로 증명이 필요하다고 생각 되어, 친구의 도움을 받아 증명을 하게 되었습니다.</p>
 <h2 id="군론-Group-theory-이란"><a href="#군론-Group-theory-이란" class="headerlink" title="군론(Group theory)이란?"></a>군론(Group theory)이란?</h2><blockquote>
-<p>그거 그냥 group theory 쓰면 꽤 자명한 결과인데 (ㅋㅋ)<br>평소에 대수학을 공부해본적이 없는 저로써는 이해할 수 없는 한마디였습니다. 군(群, group)이 뭘까요?<br>사실 군에 대한 개념을 몰라도 이 포스트에서 소개되는 페르마의 소정리 증명을 이해하는데에는 무리가 없지만, 군에 대한 이해가 있다면 무언가 새로운 통찰을 얻을지도 모릅니다. 저도 군이라는 개념에 대한 모든것은 이해하지 못했지만, 간단하게 설명하면 다음과 같습니다. </p>
+<p>그거 그냥 group theory 쓰면 꽤 자명한 결과인데 (ㅋㅋ)</p>
+</blockquote>
+<p>평소에 대수학을 공부해본적이 없는 저로써는 이해할 수 없는 한마디였습니다. 군(群, group)이 뭘까요?<br>사실 군에 대한 개념을 몰라도 이 포스트에서 소개되는 페르마의 소정리 증명을 이해하는데에는 무리가 없지만, 군에 대한 이해가 있다면 무언가 새로운 통찰을 얻을지도 모릅니다. 저도 군이라는 개념에 대한 모든것은 이해하지 못했지만, 간단하게 설명하면 다음과 같습니다. </p>
+<blockquote>
 <p>어떤 집합과, 그 집합의 두 원소에 대한 이항연산이 주어진 구조</p>
 </blockquote>
 <p>그러나 그냥 피연산자 집합과 연산자만 주어진다고 해서 다 군이 될 수 있는 것은 아니고, 군이 되려면 군의 이항연산 ∗ 이 다음 조건을 만족해야 합니다. (여기서 ∗ 는 곱셈연산자를 나타내는 것이아니라, 집합의 두 원소를 주어진 연산자에 연산한 원소 $a ∗ b$에 대응시키는 함수같은 것이라고 이해하시면 됩니다.)</p>
