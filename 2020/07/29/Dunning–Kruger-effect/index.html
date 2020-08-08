@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Computer Science &#x2F; Problem Solving &#x2F; Competitive Programming">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="https://sylvesterkwon.github.io/categories/index.html">
+  <meta name="description" content="작성중  살면서 한번쯤은 전공자가 아니라도 심리학에 관심을 가지게 됩니다. 저도 예외는 아는데 무수히 많은 응용학문중에 유독 심리학이 나의 관심을 끄는 점은 심리학은 인간의 행동과 사고에 대해 설명해줄 수 있는 학문이기 때문입니다. 우리는 매일 행동하고, 사고하고, 타인과 소통합니다. 이런 측면에서 조금 넓게보면 우리의 삶 자체를 연구하는 학문이라니, 매">
+<meta property="og:type" content="article">
+<meta property="og:title" content="더닝-크루거 효과(Dunning–Kruger effect)">
+<meta property="og:url" content="https://sylvesterkwon.github.io/2020/07/29/Dunning%E2%80%93Kruger-effect/index.html">
 <meta property="og:site_name" content="ASIX&#39; AXIS">
-<meta property="og:description" content="Computer Science &#x2F; Problem Solving &#x2F; Competitive Programming">
+<meta property="og:description" content="작성중  살면서 한번쯤은 전공자가 아니라도 심리학에 관심을 가지게 됩니다. 저도 예외는 아는데 무수히 많은 응용학문중에 유독 심리학이 나의 관심을 끄는 점은 심리학은 인간의 행동과 사고에 대해 설명해줄 수 있는 학문이기 때문입니다. 우리는 매일 행동하고, 사고하고, 타인과 소통합니다. 이런 측면에서 조금 넓게보면 우리의 삶 자체를 연구하는 학문이라니, 매">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-07-19T10:27:18.000Z">
-<meta property="article:modified_time" content="2020-07-19T10:27:18.418Z">
+<meta property="article:published_time" content="2020-07-29T12:15:31.000Z">
+<meta property="article:modified_time" content="2020-07-29T12:44:21.007Z">
 <meta property="article:author" content="ASIX">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://sylvesterkwon.github.io/categories/">
+<link rel="canonical" href="https://sylvesterkwon.github.io/2020/07/29/Dunning%E2%80%93Kruger-effect/">
 
 
 <script id="page-configurations">
@@ -40,13 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'ko'
   };
 </script>
 
-  <title>categories | ASIX' AXIS
-</title>
+  <title>더닝-크루거 효과(Dunning–Kruger effect) | ASIX' AXIS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
     <script>
@@ -167,43 +166,89 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="ko">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/2020/07/29/Dunning%E2%80%93Kruger-effect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ASIX">
+      <meta itemprop="description" content="Computer Science / Problem Solving / Competitive Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ASIX' AXIS">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          더닝-크루거 효과(Dunning–Kruger effect)
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
 
-<div class="post-meta">
+              <time title="Post created: 2020-07-29 21:15:31 / Updated at: 21:44:21" itemprop="dateCreated datePublished" datetime="2020-07-29T21:15:31+09:00">2020-07-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>작성중</p>
+</blockquote>
+<p>살면서 한번쯤은 전공자가 아니라도 심리학에 관심을 가지게 됩니다. 저도 예외는 아는데 무수히 많은 응용학문중에 유독 심리학이 나의 관심을 끄는 점은 <strong>심리학은 인간의 행동과 사고에 대해 설명해줄 수 있는 학문</strong>이기 때문입니다. 우리는 매일 행동하고, 사고하고, 타인과 소통합니다. 이런 측면에서 조금 넓게보면 우리의 삶 자체를 연구하는 학문이라니, 매력적이지 않을 수가 없습니다. 대학생들이 한번쯤은 심리학개론을 교양으로 한번 들어볼까? 고민해보는 것도 이런 심리학의 거부할 수 없는 매력때문이지 않을까요?</p>
+<h2 id="나에게-나타난-더닝-크루거-효과"><a href="#나에게-나타난-더닝-크루거-효과" class="headerlink" title="나에게 나타난 더닝-크루거 효과"></a>나에게 나타난 더닝-크루거 효과</h2><p>살다보면, 많은 상황에 나의 행동들을 심리학의 무언가에 적용시켜 볼 수 있는데, 최근에 저는 제가 했던 PS공부의 과정에 더닝 크루거 효과(Dunning–Kruger effect)를 적용시켜볼 수 있었습니다. 더닝 크루거 효과는 인지 편향의 한 형태로, 무지한 사람이 무지한 행동을 했는데, 무지하기 때문에 자신의 행동이 무지하다는 것을 인지하지 못하는 현상입니다. 더닝 크루거 효과의 이해를 돕는 쉬운 예를 몇가지 들면…</p>
+<ol>
+<li>오랜 속담, “무식하면 용감하다”</li>
+<li>아만보(아는 만큼 보인다)</li>
+<li>어떤 시험을 치기 바로전, 공부한 것은 없는데 알수없는 자신감</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/28/proof-FIT/" rel="prev" title="페르마의 소정리 증명">
+      <i class="fa fa-chevron-left"></i> 페르마의 소정리 증명
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -254,6 +299,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#나에게-나타난-더닝-크루거-효과"><span class="nav-number">1.</span> <span class="nav-text">나에게 나타난 더닝-크루거 효과</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
