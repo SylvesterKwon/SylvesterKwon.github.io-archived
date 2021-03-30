@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon_black.png">
+  <link rel="mask-icon" href="/images/favicon/favicon_black.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Convex Hull전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;	vecto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Convex-hull">
+<meta property="og:url" content="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/index.html">
+<meta property="og:site_name" content="ASIX&#39; AXIS">
+<meta property="og:description" content="Convex Hull전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;	vecto">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-03-30T05:19:23.127Z">
+<meta property="article:modified_time" content="2021-03-29T20:19:00.000Z">
+<meta property="article:author" content="ASIX">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>Convex-hull | ASIX' AXIS</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-169818997-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ASIX' AXIS</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ASIX">
+      <meta itemprop="description" content="Computer Science / Problem Solving / Competitive Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ASIX' AXIS">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Convex-hull
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2021-03-30 14:19:23 / Updated at: 05:19:00" itemprop="dateCreated datePublished" datetime="2021-03-30T14:19:23+09:00">2021-03-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Convex-Hull"><a href="#Convex-Hull" class="headerlink" title="Convex Hull"></a>Convex Hull</h1><p>전처리</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">complex</span>&lt;ll&gt; P;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> X real()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Y imag()</span></span><br></pre></td></tr></table></figure>
+<p>위껍질 아래껍질 분할 (x축 우선정렬)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n; <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="built_in">vector</span>&lt;P&gt; pt;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		ll x,y; <span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		pt.push_back(&#123;x,y&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(pt.begin(),pt.end(),[](<span class="keyword">const</span> P&amp; a, <span class="keyword">const</span> P&amp; b)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.X&lt;b.X||(a.X==b.X&amp;&amp;a.Y&lt;b.Y);</span><br><span class="line">	&#125;);</span><br><span class="line">	P p1=pt[<span class="number">0</span>], p2=pt.back();</span><br><span class="line">	<span class="built_in">vector</span>&lt;P&gt; up, down;</span><br><span class="line">	up.push_back(p1); down.push_back(p1);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;pt.size();i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">while</span>(up.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(up[up.size()<span class="number">-1</span>]-up[up.size()<span class="number">-2</span>])*(pt[i]-up[up.size()<span class="number">-1</span>])).Y&lt;=<span class="number">0</span>)</span><br><span class="line">				up.pop_back();</span><br><span class="line">			up.push_back(pt[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&lt;<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">while</span>(down.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(down[down.size()<span class="number">-1</span>]-down[down.size()<span class="number">-2</span>])*(pt[i]-down[down.size()<span class="number">-1</span>])).Y&gt;=<span class="number">0</span>)</span><br><span class="line">				down.pop_back();</span><br><span class="line">			down.push_back(pt[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;P&gt; result;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;up.size();i++)</span><br><span class="line">		result.push_back(up[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=down.size()<span class="number">-2</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">		result.push_back(down[i]);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;result.size()&lt;&lt;<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="Rotating-Calipers"><a href="#Rotating-Calipers" class="headerlink" title="Rotating Calipers"></a>Rotating Calipers</h2><p>Convex Hull을 구하고 $O(N)$만에 거리가 가장 먼 점을 찾는 기법</p>
+<p>주의: Convex hull이 시계방향으로 정렬되어있어야 사용할 수 있음, 반시계방향으로 정렬 되어 있다면 4행의 while문의 cw함수 호출을 ccw로 고칠 것</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// distance function</span></span><br><span class="line"><span class="function">ll <span class="title">dis</span><span class="params">(P a, P b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (a.X-b.X)*(a.X-b.X)+(a.Y-b.Y)*(a.Y-b.Y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;P,P&gt; ans; ll mxdis=<span class="number">0</span>;</span><br><span class="line">	ll j=<span class="number">1</span>; <span class="keyword">int</span> chs=ch.size();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;chs;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(cw(ch[i],ch[(i+<span class="number">1</span>)%chs],ch[(i+<span class="number">1</span>)%chs]+(ch[(j+<span class="number">1</span>)%chs]-ch[j%chs])))&#123;</span><br><span class="line">			<span class="keyword">if</span>(mxdis&lt;dis(ch[i],ch[j%chs]))&#123;</span><br><span class="line">				mxdis=dis(ch[i],ch[j%chs]);</span><br><span class="line">				ans=&#123;ch[i],ch[j%chs]&#125;;</span><br><span class="line">			&#125;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(mxdis&lt;dis(ch[i],ch[j%chs]))&#123;</span><br><span class="line">			mxdis=dis(ch[i],ch[j%chs]);</span><br><span class="line">			ans=&#123;ch[i],ch[j%chs]&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/23/USACO%202021%20February%20Contest%20(Silver)/" rel="prev" title="USACO 2021 February Contest (Silver)">
+      <i class="fa fa-chevron-left"></i> USACO 2021 February Contest (Silver)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Convex-Hull"><span class="nav-number">1.</span> <span class="nav-text">Convex Hull</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotating-Calipers"><span class="nav-number">1.1.</span> <span class="nav-text">Rotating Calipers</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ASIX</p>
+  <div class="site-description" itemprop="description">Computer Science / Problem Solving / Competitive Programming</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SylvesterKwon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SylvesterKwon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:asix71@gmail.com" title="E-Mail → mailto:asix71@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ASIX</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
