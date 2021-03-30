@@ -20,16 +20,17 @@
     var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Convex Hull전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;	vecto">
+  <meta name="description" content="전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;	vector&lt;P&gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Convex-hull">
+<meta property="og:title" content="Convex Hull 구현">
 <meta property="og:url" content="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/index.html">
 <meta property="og:site_name" content="ASIX&#39; AXIS">
-<meta property="og:description" content="Convex Hull전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;	vecto">
+<meta property="og:description" content="전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;	vector&lt;P&gt;">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2021-03-30T05:19:23.127Z">
-<meta property="article:modified_time" content="2021-03-29T20:19:00.000Z">
+<meta property="article:published_time" content="2021-03-30T05:21:00.000Z">
+<meta property="article:modified_time" content="2021-03-30T05:21:32.052Z">
 <meta property="article:author" content="ASIX">
+<meta property="article:tag" content="PS">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>Convex-hull | ASIX' AXIS</title>
+  <title>Convex Hull 구현 | ASIX' AXIS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
     <script>
@@ -187,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Convex-hull
+          Convex Hull 구현
         </h1>
 
         <div class="post-meta">
@@ -198,7 +199,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2021-03-30 14:19:23 / Updated at: 05:19:00" itemprop="dateCreated datePublished" datetime="2021-03-30T14:19:23+09:00">2021-03-30</time>
+              <time title="Post created: 2021-03-30 14:21:00 / Updated at: 14:21:32" itemprop="dateCreated datePublished" datetime="2021-03-30T14:21:00+09:00">2021-03-30</time>
             </span>
 
           
@@ -212,7 +213,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Convex-Hull"><a href="#Convex-Hull" class="headerlink" title="Convex Hull"></a>Convex Hull</h1><p>전처리</p>
+        <p>전처리</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">complex</span>&lt;ll&gt; P;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> X real()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Y imag()</span></span><br></pre></td></tr></table></figure>
 <p>위껍질 아래껍질 분할 (x축 우선정렬)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n; <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="built_in">vector</span>&lt;P&gt; pt;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		ll x,y; <span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		pt.push_back(&#123;x,y&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(pt.begin(),pt.end(),[](<span class="keyword">const</span> P&amp; a, <span class="keyword">const</span> P&amp; b)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.X&lt;b.X||(a.X==b.X&amp;&amp;a.Y&lt;b.Y);</span><br><span class="line">	&#125;);</span><br><span class="line">	P p1=pt[<span class="number">0</span>], p2=pt.back();</span><br><span class="line">	<span class="built_in">vector</span>&lt;P&gt; up, down;</span><br><span class="line">	up.push_back(p1); down.push_back(p1);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;pt.size();i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">while</span>(up.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(up[up.size()<span class="number">-1</span>]-up[up.size()<span class="number">-2</span>])*(pt[i]-up[up.size()<span class="number">-1</span>])).Y&lt;=<span class="number">0</span>)</span><br><span class="line">				up.pop_back();</span><br><span class="line">			up.push_back(pt[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&lt;<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">while</span>(down.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(down[down.size()<span class="number">-1</span>]-down[down.size()<span class="number">-2</span>])*(pt[i]-down[down.size()<span class="number">-1</span>])).Y&gt;=<span class="number">0</span>)</span><br><span class="line">				down.pop_back();</span><br><span class="line">			down.push_back(pt[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;P&gt; result;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;up.size();i++)</span><br><span class="line">		result.push_back(up[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=down.size()<span class="number">-2</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">		result.push_back(down[i]);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;result.size()&lt;&lt;<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
@@ -227,6 +228,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PS/" rel="tag"># PS</a>
+          </div>
 
         
 
@@ -296,7 +300,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Convex-Hull"><span class="nav-number">1.</span> <span class="nav-text">Convex Hull</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotating-Calipers"><span class="nav-number">1.1.</span> <span class="nav-text">Rotating Calipers</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotating-Calipers"><span class="nav-number">1.</span> <span class="nav-text">Rotating Calipers</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -407,6 +411,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
