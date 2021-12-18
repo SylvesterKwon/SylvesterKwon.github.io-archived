@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon_black.png">
+  <link rel="mask-icon" href="/images/favicon/favicon_black.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="title: E-maxx Algorithms 한국어 현지화 프로젝트mathjax: truedate: 2021-12-18 14:45:00 tags: e-maxx-kor, algebraE-Maxx Algorithms 한국어 현지화 프로젝트  본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ASIX&#39; AXIS">
+<meta property="og:url" content="https://sylvesterkwon.github.io/e-maxx-kor/index.html">
+<meta property="og:site_name" content="ASIX&#39; AXIS">
+<meta property="og:description" content="title: E-maxx Algorithms 한국어 현지화 프로젝트mathjax: truedate: 2021-12-18 14:45:00 tags: e-maxx-kor, algebraE-Maxx Algorithms 한국어 현지화 프로젝트  본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-12-18T06:09:48.122Z">
+<meta property="article:modified_time" content="2021-12-18T06:09:48.122Z">
+<meta property="article:author" content="Dohyun Kwon">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sylvesterkwon.github.io/e-maxx-kor/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'ko'
+  };
+</script>
+
+  <title> | ASIX' AXIS
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-169818997-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ASIX' AXIS</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Dohyun Kwon's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-e-maxx-kor">
+
+    <a href="/e-maxx-kor/" rel="section"><i class="fa fa-book fa-fw"></i>e-maxx-kor</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="ko">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!--?title Main Page-->
+<hr>
+<p>title: E-maxx Algorithms 한국어 현지화 프로젝트<br>mathjax: true<br>date: 2021-12-18 14:45:00</p>
+<h2 id="tags-e-maxx-kor-algebra"><a href="#tags-e-maxx-kor-algebra" class="headerlink" title="tags: e-maxx-kor, algebra"></a>tags: e-maxx-kor, algebra</h2><h1 data-toc="off">E-Maxx Algorithms 한국어 현지화 프로젝트</h1>
+
+<p><em>본 포스트는 <a href="http://e-maxx.ru/algo/" target="_blank" rel="noopener">e-maxx.ru/algo</a> 의 영문 번역본인 <a href="https://cp-algorithms.com/index.html" target="_blank" rel="noopener">cp-algorithms (e-maxx-eng)</a> 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 <a href="https://e-maxx.ru/about.php" target="_blank" rel="noopener">иванов максим</a> 이며, cp-algorithms 포스트의 기여자는 <a href="https://github.com/e-maxx-eng/e-maxx-eng" target="_blank" rel="noopener">여기서</a> 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.</em></p>
+<h2 id="Articles-번역-후"><a href="#Articles-번역-후" class="headerlink" title="Articles (번역 후)"></a>Articles (번역 후)</h2><h3 id="Algebra"><a href="#Algebra" class="headerlink" title="Algebra"></a>Algebra</h3><ul>
+<li><strong>Fundamentals</strong><ul>
+<li><a href="./algebra/binary-exp.html">Binary Exponentiation</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Articles-번역-전"><a href="#Articles-번역-전" class="headerlink" title="Articles (번역 전)"></a>Articles (번역 전)</h2><h3 id="Algebra-1"><a href="#Algebra-1" class="headerlink" title="Algebra"></a>Algebra</h3><ul>
+<li><strong>Fundamentals</strong><ul>
+<li><a href="./algebra/binary-exp.html">Binary Exponentiation</a></li>
+<li><a href="./algebra/euclid-algorithm.html">Euclidean algorithm for computing the greatest common divisor</a></li>
+<li><a href="./algebra/extended-euclid-algorithm.html">Extended Euclidean Algorithm</a></li>
+<li><a href="./algebra/linear-diophantine-equation.html">Linear Diophantine Equations</a></li>
+<li><a href="./algebra/fibonacci-numbers.html">Fibonacci Numbers</a></li>
+</ul>
+</li>
+<li><strong>Prime numbers</strong><ul>
+<li><a href="./algebra/sieve-of-eratosthenes.html">Sieve of Eratosthenes</a></li>
+<li><a href="./algebra/prime-sieve-linear.html">Linear Sieve</a></li>
+<li><a href="./algebra/primality_tests.html">Primality tests</a></li>
+<li><a href="./algebra/factorization.html">Integer factorization</a></li>
+</ul>
+</li>
+<li><strong>Number-theoretic functions</strong><ul>
+<li><a href="./algebra/phi-function.html">Euler’s totient function</a></li>
+<li><a href="./algebra/divisors.html">Number of divisors / sum of divisors</a></li>
+</ul>
+</li>
+<li><strong>Modular arithmetic</strong><ul>
+<li><a href="./algebra/module-inverse.html">Modular Inverse</a></li>
+<li><a href="./algebra/linear_congruence_equation.html">Linear Congruence Equation</a></li>
+<li><a href="./algebra/chinese-remainder-theorem.html">Chinese Remainder Theorem</a></li>
+<li><a href="./algebra/factorial-modulo.html">Factorial modulo $p$</a></li>
+<li><a href="./algebra/discrete-log.html">Discrete Log</a></li>
+<li><a href="./algebra/primitive-root.html">Primitive Root</a></li>
+<li><a href="./algebra/discrete-root.html">Discrete Root</a></li>
+<li><a href="./algebra/montgomery_multiplication.html">Montgomery Multiplication</a></li>
+</ul>
+</li>
+<li><strong>Number systems</strong><ul>
+<li><a href="./algebra/balanced-ternary.html">Balanced Ternary</a></li>
+<li><a href="./algebra/gray-code.html">Gray code</a></li>
+</ul>
+</li>
+<li><strong>Miscellaneous</strong><ul>
+<li><a href="./algebra/all-submasks.html">Enumerating submasks of a bitmask</a></li>
+<li><a href="./algebra/big-integer.html">Arbitrary-Precision Arithmetic</a></li>
+<li><a href="./algebra/fft.html">Fast Fourier transform</a></li>
+<li><a href="./algebra/polynomial.html">Operations on polynomials and series</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h3><ul>
+<li><strong>Fundamentals</strong><ul>
+<li><a href="./data_structures/stack_queue_modification.html">Minimum Stack / Minimum Queue</a></li>
+<li><a href="./data_structures/sparse-table.html">Sparse Table</a></li>
+</ul>
+</li>
+<li><strong>Trees</strong><ul>
+<li><a href="./data_structures/disjoint_set_union.html">Disjoint Set Union</a></li>
+<li><a href="./data_structures/fenwick.html">Fenwick Tree</a></li>
+<li><a href="./data_structures/sqrt_decomposition.html">Sqrt Decomposition</a></li>
+<li><a href="./data_structures/segment_tree.html">Segment Tree</a></li>
+<li><a href="./data_structures/treap.html">Treap</a></li>
+<li><a href="./data_structures/sqrt-tree.html">Sqrt Tree</a></li>
+<li><a href="./data_structures/randomized_heap.html">Randomized Heap</a></li>
+</ul>
+</li>
+<li><strong>Advanced</strong><ul>
+<li><a href="./data_structures/deleting_in_log_n.html">Deleting from a data structure in O(T(n)log n)</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><ul>
+<li><strong>DP optimizations</strong><ul>
+<li><a href="./dynamic_programming/divide-and-conquer-dp.html">Divide and Conquer DP</a></li>
+</ul>
+</li>
+<li><strong>Tasks</strong><ul>
+<li><a href="./dynamic_programming/profile-dynamics.html">Dynamic Programming on Broken Profile. Problem “Parquet”</a></li>
+<li><a href="./dynamic_programming/zero_matrix.html">Finding the largest zero submatrix</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="String-Processing"><a href="#String-Processing" class="headerlink" title="String Processing"></a>String Processing</h3><ul>
+<li><strong>Fundamentals</strong><ul>
+<li><a href="./string/string-hashing.html">String Hashing</a></li>
+<li><a href="./string/rabin-karp.html">Rabin-Karp for String Matching</a></li>
+<li><a href="./string/prefix-function.html">Prefix function - Knuth-Morris-Pratt</a></li>
+<li><a href="./string/z-function.html">Z-function</a></li>
+<li><a href="./string/suffix-array.html">Suffix Array</a></li>
+<li><a href="./string/aho_corasick.html">Aho-Corasick algorithm</a></li>
+</ul>
+</li>
+<li><strong>Advanced</strong><ul>
+<li><a href="./string/suffix-tree-ukkonen.html">Suffix Tree</a></li>
+<li><a href="./string/suffix-automaton.html">Suffix Automaton</a></li>
+<li><a href="./string/lyndon_factorization.html">Lyndon factorization</a></li>
+</ul>
+</li>
+<li><strong>Tasks</strong><ul>
+<li><a href="./string/expression_parsing.html">Expression parsing</a></li>
+<li><a href="./string/manacher.html">Manacher’s Algorithm - Finding all sub-palindromes in O(N)</a></li>
+<li><a href="./string/main_lorentz.html">Finding repetitions</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Linear-Algebra"><a href="#Linear-Algebra" class="headerlink" title="Linear Algebra"></a>Linear Algebra</h3><ul>
+<li><strong>Matrices</strong><ul>
+<li><a href="./linear_algebra/linear-system-gauss.html">Gauss &amp; System of Linear Equations</a></li>
+<li><a href="./linear_algebra/determinant-gauss.html">Gauss &amp; Determinant</a></li>
+<li><a href="./linear_algebra/determinant-kraut.html">Kraut &amp; Determinant</a></li>
+<li><a href="./linear_algebra/rank-matrix.html">Rank of a matrix</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Combinatorics"><a href="#Combinatorics" class="headerlink" title="Combinatorics"></a>Combinatorics</h3><ul>
+<li><strong>Fundamentals</strong><ul>
+<li><a href="./algebra/factorial-divisors.html">Finding Power of Factorial Divisor</a></li>
+<li><a href="./combinatorics/binomial-coefficients.html">Binomial Coefficients</a></li>
+<li><a href="./combinatorics/catalan-numbers.html">Catalan Numbers</a></li>
+</ul>
+</li>
+<li><strong>Techniques</strong><ul>
+<li><a href="./combinatorics/inclusion-exclusion.html">The Inclusion-Exclusion Principle</a></li>
+<li><a href="./combinatorics/burnside.html">Burnside’s lemma / Pólya enumeration theorem</a></li>
+<li><a href="./combinatorics/stars_and_bars.html">Stars and bars</a></li>
+<li><a href="./combinatorics/generating_combinations.html">Generating all $K$-combinations</a></li>
+</ul>
+</li>
+<li><strong>Tasks</strong><ul>
+<li><a href="./combinatorics/bishops-on-chessboard.html">Placing Bishops on a Chessboard</a></li>
+<li><a href="./combinatorics/bracket_sequences.html">Balanced bracket sequences</a></li>
+<li><a href="./combinatorics/counting_labeled_graphs.html">Counting labeled graphs</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Numerical-Methods"><a href="#Numerical-Methods" class="headerlink" title="Numerical Methods"></a>Numerical Methods</h3><ul>
+<li><strong>Search</strong><ul>
+<li><a href="./num_methods/ternary_search.html">Ternary Search</a></li>
+<li><a href="./num_methods/roots_newton.html">Newton’s method for finding roots</a></li>
+</ul>
+</li>
+<li><strong>Integration</strong><ul>
+<li><a href="./num_methods/simpson-integration.html">Integration by Simpson’s formula</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h3><ul>
+<li><strong>Elementary operations</strong><ul>
+<li><a href="./geometry/basic-geometry.html">Basic Geometry</a></li>
+<li><a href="./geometry/segment-to-line.html">Finding the equation of a line for a segment</a></li>
+<li><a href="./geometry/lines-intersection.html">Intersection Point of Lines</a></li>
+<li><a href="./geometry/check-segments-intersection.html">Check if two segments intersect</a></li>
+<li><a href="./geometry/segments-intersection.html">Intersection of Segments</a></li>
+<li><a href="./geometry/circle-line-intersection.html">Circle-Line Intersection</a></li>
+<li><a href="./geometry/circle-circle-intersection.html">Circle-Circle Intersection</a></li>
+<li><a href="./geometry/tangents-to-two-circles.html">Common tangents to two circles</a></li>
+<li><a href="./geometry/length-of-segments-union.html">Length of the union of segments</a></li>
+</ul>
+</li>
+<li><strong>Polygons</strong><ul>
+<li><a href="./geometry/oriented-triangle-area.html">Oriented area of a triangle</a></li>
+<li><a href="./geometry/area-of-simple-polygon.html">Area of simple polygon</a></li>
+<li><a href="./geometry/point-in-convex-polygon.html">Check if points belong to the convex polygon in O(log N)</a></li>
+<li><a href="./geometry/minkowski.html">Minkowski sum of convex polygons</a></li>
+<li><a href="./geometry/picks-theorem.html">Pick’s Theorem - area of lattice polygons</a></li>
+<li><a href="./geometry/lattice-points.html">Lattice points of non-lattice polygon</a></li>
+</ul>
+</li>
+<li><strong>Convex hull</strong><ul>
+<li><a href="./geometry/convex-hull.html">Convex hull construction</a></li>
+<li><a href="./geometry/convex_hull_trick.html">Convex hull trick and Li Chao tree</a></li>
+</ul>
+</li>
+<li><strong>Sweep-line</strong><ul>
+<li><a href="./geometry/intersecting_segments.html">Search for a pair of intersecting segments</a></li>
+<li><a href="./geometry/point-location.html">Point location in O(log N)</a></li>
+</ul>
+</li>
+<li><strong>Miscellaneous</strong><ul>
+<li><a href="./geometry/nearest_points.html">Finding the nearest pair of points</a></li>
+<li><a href="./geometry/delaunay.html">Delaunay triangulation and Voronoi diagram</a></li>
+<li><a href="./geometry/vertical_decomposition.html">Vertical decomposition</a></li>
+<li><a href="./geometry/halfplane-intersection.html">Half-plane intersection - S&amp;I Algorithm in O(Nlog N)</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Graphs"><a href="#Graphs" class="headerlink" title="Graphs"></a>Graphs</h3><ul>
+<li><strong>Graph traversal</strong><ul>
+<li><a href="./graph/breadth-first-search.html">Breadth First Search</a></li>
+<li><a href="./graph/depth-first-search.html">Depth First Search</a></li>
+</ul>
+</li>
+<li><strong>Connected components, bridges, articulations points</strong><ul>
+<li><a href="./graph/search-for-connected-components.html">Finding Connected Components</a></li>
+<li><a href="./graph/bridge-searching.html">Finding Bridges in O(N+M)</a></li>
+<li><a href="./graph/bridge-searching-online.html">Finding Bridges Online</a></li>
+<li><a href="./graph/cutpoints.html">Finding Articulation Points in O(N+M)</a></li>
+<li><a href="./graph/strongly-connected-components.html">Strongly Connected Components and Condensation Graph</a></li>
+<li><a href="./graph/strong-orientation.html">Strong Orientation</a></li>
+</ul>
+</li>
+<li><strong>Single-source shortest paths</strong><ul>
+<li><a href="./graph/dijkstra.html">Dijkstra - finding shortest paths from given vertex</a></li>
+<li><a href="./graph/dijkstra_sparse.html">Dijkstra on sparse graphs</a></li>
+<li><a href="./graph/bellman_ford.html">Bellman-Ford - finding shortest paths with negative weights</a></li>
+<li><a href="./graph/01_bfs.html">0-1 BFS</a></li>
+<li><a href="./graph/desopo_pape.html">D´Esopo-Pape algorithm</a></li>
+</ul>
+</li>
+<li><strong>All-pairs shortest paths</strong><ul>
+<li><a href="./graph/all-pair-shortest-path-floyd-warshall.html">Floyd-Warshall - finding all shortest paths</a></li>
+<li><a href="./graph/fixed_length_paths.html">Number of paths of fixed length / Shortest paths of fixed length</a></li>
+</ul>
+</li>
+<li><strong>Spanning trees</strong><ul>
+<li><a href="./graph/mst_prim.html">Minimum Spanning Tree - Prim’s Algorithm</a></li>
+<li><a href="./graph/mst_kruskal.html">Minimum Spanning Tree - Kruskal</a></li>
+<li><a href="./graph/mst_kruskal_with_dsu.html">Minimum Spanning Tree - Kruskal with Disjoint Set Union</a></li>
+<li><a href="./graph/second_best_mst.html">Second best Minimum Spanning Tree - Using Kruskal and Lowest Common Ancestor</a></li>
+<li><a href="./graph/kirchhoff-theorem.html">Kirchhoff Theorem</a></li>
+<li><a href="./graph/pruefer_code.html">Prüfer code</a></li>
+</ul>
+</li>
+<li><strong>Cycles</strong><ul>
+<li><a href="./graph/finding-cycle.html">Checking a graph for acyclicity and finding a cycle in O(M)</a></li>
+<li><a href="./graph/finding-negative-cycle-in-graph.html">Finding a Negative Cycle in the Graph</a></li>
+<li><a href="./graph/euler_path.html">Eulerian Path</a></li>
+</ul>
+</li>
+<li><strong>Lowest common ancestor</strong><ul>
+<li><a href="./graph/lca.html">Lowest Common Ancestor</a></li>
+<li><a href="./graph/lca_binary_lifting.html">Lowest Common Ancestor - Binary Lifting</a></li>
+<li><a href="./graph/lca_farachcoltonbender.html">Lowest Common Ancestor - Farach-Colton and Bender algorithm</a></li>
+<li><a href="./graph/rmq_linear.html">Solve RMQ by finding LCA</a></li>
+<li><a href="./graph/lca_tarjan.html">Lowest Common Ancestor - Tarjan’s off-line algorithm</a></li>
+</ul>
+</li>
+<li><strong>Flows and related problems</strong><ul>
+<li><a href="./graph/edmonds_karp.html">Maximum flow - Ford-Fulkerson and Edmonds-Karp</a></li>
+<li><a href="./graph/push-relabel.html">Maximum flow - Push-relabel algorithm</a></li>
+<li><a href="./graph/push-relabel-faster.html">Maximum flow - Push-relabel algorithm improved</a></li>
+<li><a href="./graph/dinic.html">Maximum flow - Dinic’s algorithm</a></li>
+<li><a href="./graph/mpm.html">Maximum flow - MPM algorithm</a></li>
+<li><a href="./graph/flow_with_demands.html">Flows with demands</a></li>
+<li><a href="./graph/min_cost_flow.html">Minimum-cost flow</a></li>
+<li><a href="./graph/Assignment-problem-min-flow.html">Assignment problem. Solution using min-cost-flow in O (N^5)</a></li>
+</ul>
+</li>
+<li><strong>Matchings and related problems</strong><ul>
+<li><a href="./graph/bipartite-check.html">Bipartite Graph Check</a></li>
+<li><a href="./graph/kuhn_maximum_bipartite_matching.html">Kuhn’ Algorithm - Maximum Bipartite Matching</a></li>
+</ul>
+</li>
+<li><strong>Miscellaneous</strong><ul>
+<li><a href="./graph/topological-sort.html">Topological Sorting</a></li>
+<li><a href="./graph/edge_vertex_connectivity.html">Edge connectivity / Vertex connectivity</a></li>
+<li><a href="./graph/tree_painting.html">Tree painting</a></li>
+<li><a href="./graph/2SAT.html">2-SAT</a></li>
+<li><a href="./graph/hld.html">Heavy-light decomposition</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h3><ul>
+<li><strong>Sequences</strong><ul>
+<li><a href="./sequences/rmq.html">RMQ task (Range Minimum Query - the smallest element in an interval)</a></li>
+<li><a href="./sequences/longest_increasing_subsequence.html">Longest increasing subsequence</a></li>
+<li><a href="./others/maximum_average_segment.html">Search the subsegment with the maximum/minimum sum</a></li>
+<li><a href="./sequences/k-th.html">K-th order statistic in O(N)</a></li>
+</ul>
+</li>
+<li><strong>Game Theory</strong><ul>
+<li><a href="./game_theory/games_on_graphs.html">Games on arbitrary graphs</a></li>
+<li><a href="./game_theory/sprague-grundy-nim.html">Sprague-Grundy theorem. Nim</a></li>
+</ul>
+</li>
+<li><strong>Schedules</strong><ul>
+<li><a href="./schedules/schedule_one_machine.html">Scheduling jobs on one machine</a></li>
+<li><a href="./schedules/schedule_two_machines.html">Scheduling jobs on two machines</a></li>
+<li><a href="./schedules/schedule-with-completion-duration.html">Optimal schedule of jobs given their deadlines and durations</a></li>
+</ul>
+</li>
+<li><strong>Miscellaneous</strong><ul>
+<li><a href="./others/josephus_problem.html">Josephus problem</a></li>
+<li><a href="./others/15-puzzle.html">15 Puzzle Game: Existence Of The Solution</a></li>
+<li><a href="./others/stern_brocot_tree_farey_sequences.html">The Stern-Brocot Tree and Farey Sequences</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><a href="./contrib.html">Information for contributors</a> and <a href="./preview.html">Test-Your-Page form</a></p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-e-maxx-kor-algebra"><span class="nav-number">1.</span> <span class="nav-text">tags: e-maxx-kor, algebra</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">E-Maxx Algorithms 한국어 현지화 프로젝트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Articles-번역-후"><span class="nav-number">1.</span> <span class="nav-text">Articles (번역 후)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Algebra"><span class="nav-number">1.1.</span> <span class="nav-text">Algebra</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Articles-번역-전"><span class="nav-number">2.</span> <span class="nav-text">Articles (번역 전)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Algebra-1"><span class="nav-number">2.1.</span> <span class="nav-text">Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Structures"><span class="nav-number">2.2.</span> <span class="nav-text">Data Structures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Programming"><span class="nav-number">2.3.</span> <span class="nav-text">Dynamic Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Processing"><span class="nav-number">2.4.</span> <span class="nav-text">String Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Algebra"><span class="nav-number">2.5.</span> <span class="nav-text">Linear Algebra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combinatorics"><span class="nav-number">2.6.</span> <span class="nav-text">Combinatorics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Numerical-Methods"><span class="nav-number">2.7.</span> <span class="nav-text">Numerical Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Geometry"><span class="nav-number">2.8.</span> <span class="nav-text">Geometry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graphs"><span class="nav-number">2.9.</span> <span class="nav-text">Graphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Miscellaneous"><span class="nav-number">2.10.</span> <span class="nav-text">Miscellaneous</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Dohyun Kwon</p>
+  <div class="site-description" itemprop="description">Computer Science / Problem Solving / Competitive Programming</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SylvesterKwon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SylvesterKwon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:asix71@gmail.com" title="E-Mail → mailto:asix71@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/ASIX_KWON" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;ASIX_KWON" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dohyun Kwon</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
