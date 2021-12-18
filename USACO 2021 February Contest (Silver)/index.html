@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;vector&lt;P&gt; p">
+  <meta name="description" content="Comfortable CowsBOJ#21232 각 iteration 마다 cow를 추가하게 되면, 추가한 cell과, 인접한 cell간의 상태에 변화가 일어난다. 크게 두가지 상황이 있다.  cow를 추가한 cell에는 원래 인접한 cow가 3개였는데, 정작 해당 칸에는 cow가 점유하고 있지 않은 상태여서 나머지 cell에 cow가 점유하고 있지 않아도">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Convex Hull 구현">
-<meta property="og:url" content="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/index.html">
+<meta property="og:title" content="USACO 2021 February Contest (Silver)">
+<meta property="og:url" content="https://sylvesterkwon.github.io/USACO%202021%20February%20Contest%20(Silver)/index.html">
 <meta property="og:site_name" content="ASIX&#39; AXIS">
-<meta property="og:description" content="전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;vector&lt;P&gt; p">
+<meta property="og:description" content="Comfortable CowsBOJ#21232 각 iteration 마다 cow를 추가하게 되면, 추가한 cell과, 인접한 cell간의 상태에 변화가 일어난다. 크게 두가지 상황이 있다.  cow를 추가한 cell에는 원래 인접한 cow가 3개였는데, 정작 해당 칸에는 cow가 점유하고 있지 않은 상태여서 나머지 cell에 cow가 점유하고 있지 않아도">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2021-03-30T05:21:00.000Z">
-<meta property="article:modified_time" content="2021-03-30T05:22:45.932Z">
+<meta property="article:published_time" content="2021-03-23T09:48:05.000Z">
+<meta property="article:modified_time" content="2021-04-27T09:30:07.026Z">
 <meta property="article:author" content="Dohyun Kwon">
-<meta property="article:tag" content="PS">
+<meta property="article:tag" content="USACO">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/">
+<link rel="canonical" href="https://sylvesterkwon.github.io/USACO%202021%20February%20Contest%20(Silver)/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Convex Hull 구현 | ASIX' AXIS</title>
+  <title>USACO 2021 February Contest (Silver) | ASIX' AXIS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
     <script>
@@ -133,6 +133,11 @@
     <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
+        <li class="menu-item menu-item-e-maxx-kor">
+
+    <a href="/e-maxx-kor/" rel="section"><i class="fa fa-book fa-fw"></i>e-maxx-kor</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -161,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/2021/03/30/Convex-hull/">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/USACO%202021%20February%20Contest%20(Silver)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Convex Hull 구현
+          USACO 2021 February Contest (Silver)
         </h1>
 
         <div class="post-meta">
@@ -183,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2021-03-30 14:21:00 / Updated at: 14:22:45" itemprop="dateCreated datePublished" datetime="2021-03-30T14:21:00+09:00">2021-03-30</time>
+              <time title="Post created: 2021-03-23 18:48:05" itemprop="dateCreated datePublished" datetime="2021-03-23T18:48:05+09:00">2021-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2021-04-27 18:30:07" itemprop="dateModified" datetime="2021-04-27T18:30:07+09:00">2021-04-27</time>
+              </span>
 
           
 
@@ -199,14 +210,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>전처리</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">complex</span>&lt;ll&gt; P;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> X real()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Y imag()</span></span><br></pre></td></tr></table></figure>
-<p>위껍질 아래껍질 분할 (x축 우선정렬)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n; <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; pt;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">	ll x,y; <span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">	pt.push_back(&#123;x,y&#125;);</span><br><span class="line">&#125;</span><br><span class="line">sort(pt.begin(),pt.end(),[](<span class="keyword">const</span> P&amp; a, <span class="keyword">const</span> P&amp; b)&#123;</span><br><span class="line">	<span class="keyword">return</span> a.X&lt;b.X||(a.X==b.X&amp;&amp;a.Y&lt;b.Y);</span><br><span class="line">&#125;);</span><br><span class="line">P p1=pt[<span class="number">0</span>], p2=pt.back();</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; up, down;</span><br><span class="line">up.push_back(p1); down.push_back(p1);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;pt.size();i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(up.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(up[up.size()<span class="number">-1</span>]-up[up.size()<span class="number">-2</span>])*(pt[i]-up[up.size()<span class="number">-1</span>])).Y&lt;=<span class="number">0</span>)</span><br><span class="line">			up.pop_back();</span><br><span class="line">		up.push_back(pt[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&lt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(down.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(down[down.size()<span class="number">-1</span>]-down[down.size()<span class="number">-2</span>])*(pt[i]-down[down.size()<span class="number">-1</span>])).Y&gt;=<span class="number">0</span>)</span><br><span class="line">			down.pop_back();</span><br><span class="line">		down.push_back(pt[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; result;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;up.size();i++)</span><br><span class="line">	result.push_back(up[i]);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=down.size()<span class="number">-2</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">	result.push_back(down[i]);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;result.size()&lt;&lt;<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="Rotating-Calipers"><a href="#Rotating-Calipers" class="headerlink" title="Rotating Calipers"></a>Rotating Calipers</h2><p>Convex Hull을 구하고 $O(N)$만에 거리가 가장 먼 점을 찾는 기법</p>
-<p>주의: Convex hull이 시계방향으로 정렬되어있어야 사용할 수 있음, 반시계방향으로 정렬 되어 있다면 4행의 while문의 cw함수 호출을 ccw로 고칠 것</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// distance function</span></span><br><span class="line"><span class="function">ll <span class="title">dis</span><span class="params">(P a, P b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (a.X-b.X)*(a.X-b.X)+(a.Y-b.Y)*(a.Y-b.Y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;P,P&gt; ans; ll mxdis=<span class="number">0</span>;</span><br><span class="line">ll j=<span class="number">1</span>; <span class="keyword">int</span> chs=ch.size();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;chs;i++)&#123;</span><br><span class="line">	<span class="keyword">while</span>(cw(ch[i],ch[(i+<span class="number">1</span>)%chs],ch[(i+<span class="number">1</span>)%chs]+(ch[(j+<span class="number">1</span>)%chs]-ch[j%chs])))&#123;</span><br><span class="line">		<span class="keyword">if</span>(mxdis&lt;dis(ch[i],ch[j%chs]))&#123;</span><br><span class="line">			mxdis=dis(ch[i],ch[j%chs]);</span><br><span class="line">			ans=&#123;ch[i],ch[j%chs]&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">		j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(mxdis&lt;dis(ch[i],ch[j%chs]))&#123;</span><br><span class="line">		mxdis=dis(ch[i],ch[j%chs]);</span><br><span class="line">		ans=&#123;ch[i],ch[j%chs]&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="Comfortable-Cows"><a href="#Comfortable-Cows" class="headerlink" title="Comfortable Cows"></a>Comfortable Cows</h2><p><a href="https://www.acmicpc.net/problem/21232" target="_blank" rel="noopener">BOJ#21232</a></p>
+<p>각 iteration 마다 cow를 추가하게 되면, 추가한 cell과, 인접한 cell간의 상태에 변화가 일어난다. 크게 두가지 상황이 있다.</p>
+<ul>
+<li>cow를 추가한 cell에는 원래 인접한 cow가 3개였는데, 정작 해당 칸에는 cow가 점유하고 있지 않은 상태여서 나머지 cell에 cow가 점유하고 있지 않아도 됐지만, 이번 iteration에서 해당 cell에 cow를 추가하여서 나머지 cell도 cow를 추가해야하는 상황</li>
+<li>cow를 추가한 cell과 인접한 4개의 cell은, 이번 iteration에 cow가 추가되면서 인접한 cow의 수가 1늘어나 3이되어 나머지 cell에 cow를 추가해야하는 상황</li>
+</ul>
+<p>매 iteration 마다 추가해야하는 cow를 계산하려고 하지말고 변화에 집중해서 문제를 관찰해보자.  잘 생각해보면, 추가해야되는 것으로 판단되었던 cell이 다시 추가하지 않아도 되는 cell로 돌아가는 경우는 없다. 다시 말하면, 한번 cow를 추가하기로 되어 있었다면, 모든 iteration이 끝날때 까지 그 상태가 유지가 된다. 따라서 매 iteration 마다 추가해야하는 cow를 계산하려고 하지말고 매 iteration마다 나타나는 상태 변화에 집중해서 문제를 관찰해보자. 어떤 cell에 cow를 추가해야하지만 추가되지 않은 cell도 그냥 그 cell은 점유되었다고 생각하면 편하다. 그리고 점유된(실제로 cow가 점유하고 있거나 점유되어야 하는 칸 모두) cell 갯수에서 실제로 cow가 점유하고 있는 cell의 갯수를 매 iteration마다 출력해주면 된다. 추가해야하는 cow는 각 iteration별로 dfs를 해주면 구할 수 있다.</p>
+<h2 id="Year-of-the-Cow"><a href="#Year-of-the-Cow" class="headerlink" title="Year of the Cow"></a>Year of the Cow</h2><p><a href="https://www.acmicpc.net/problem/21233" target="_blank" rel="noopener">BOJ#21233</a></p>
+<p>입력받은 시간들을 정렬하고, 그것을 각각 $t_0, t_1, \cdots, t_{N-1}$이라고 하자. ($t_0$이 가장 먼 과거이다.) 그리고 시간이 과거에서 현재로 흐른다는 이점을 최대한 활용하기 위해, 현재에서 $t_0$에 위치한 ancestor를 만나기 위한 과거로 portal을 한번 이용한다. ($ceil()$을 이용하면 편할 것이다.) 이제 해야할 것은, $t_i$와 $t_j$사이에 portal을 사용하면 어떤지를 평가하는 것이다. 정확히는  $t_i$에 위치한 ancestor를 만난 후, portal을 사용해서 $t_j$에 위치한 ancestor를 만나기 위한 시간의 최대값으로 이동하는 것이다. 마찬가지로 $ceil()$, $floor()$등을 계산하면 쉽게 계산을 할 수 있다. portal을 이용해서 절약할 수 있는 시간을 $timegap$에 모아서 정렬을 해준다. 가장 큰것부터 $min(timegap_{size},K-1)$개 뽑아서 처음 portal을 사용하여 돌아간 시간에서 빼주면 된다. </p>
+<h2 id="Just-Green-Enough"><a href="#Just-Green-Enough" class="headerlink" title="Just Green Enough"></a>Just Green Enough</h2><p><a href="https://www.acmicpc.net/problem/21234" target="_blank" rel="noopener">BOJ#21234</a></p>
+<p>문제를 단순화시켜서, sub-grid의 최소 green-ness가 100인 경우에서 101인 경우를 빼는 것으로 이 문제의 정답인 최소 green-ness가 정확히 100인 경우의 가짓수를 세도록 하자. 그렇다면 해결해야할 문제는 최소 green-ness가 $m$일 때, sub-grid의 가짓수를 시간내에 해결해야 한다.</p>
+<p>우선 Naive하게 생각해보자. sub-grid는 모두 $N^2(N+1)^2/4$가지 경우가 있다고 한다. 각 sub-grid 마다 문제에서 주어진 sufficiently green한 조건을 만족하는지 확인하는데 $O(1)$이 걸린다고 쳐도, 이 방법으로는 $O(N^4)$의 시간이 걸리기 때문에 TLE를 면치 못할 것이다.</p>
+<p>축 하나를 정하고, 해당 축에서 sub-grid의 시작지점과 끝지점을 각각 $i$, $j$로 고정하겠다. 문제를 1차원으로 축소해서 생각해보면, $O(N)$에 해결할 수 있다. 이를 prefix sum을 사용하여 저장해두면, 해당 행의 $i$~$j$까지의 cell이 모두 green-ness가 $m$보다는 같거나 큰것인지 $O(1)$에 알 수 있다. $k$행에서 $i$~$j$번째 cell의 green-ness가 모두 $m$보다 큰지를 $g_{i,j}(k)$라고 나타내도록 하자. 그렇다면 모든 $0\leq k&lt;N$을 만족하는 모든 $k$에 대해서 $g_{i,j}(k)$를 계산할 수 있다. $g_{i,j}(k)$가 참인 $k$에 대해서 아까와 비슷한 상황이 나오게 되는데, $i$, $j$를 한축의 끝과 끝 좌표로 가지는 모든 sub-grid의 개수를 $O(N)$에 계산할 수 있게 된다. 그렇다면 문제를 $O(N^3)$에 해결할 수 있다. 실제로는 $_NC_2*N$번의 iteration을 수행하므로 단순 $O(N^3)$보다는 2배정도 빠르다.</p>
+<p>iteration 순서를 조금 변형시켜서 $O(N^2)$에 문제를 해결하는 흥미로운 방법도 있다고 한다. <a href="http://usaco.org/current/data/sol_prob3_silver_feb21.html" target="_blank" rel="noopener">http://usaco.org/current/data/sol_prob3_silver_feb21.html</a> 를 참조하자.</p>
+
     </div>
 
     
@@ -215,7 +233,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/PS/" rel="tag"># PS</a>
+              <a href="/tags/USACO/" rel="tag"># USACO</a>
           </div>
 
         
@@ -224,12 +242,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/23/USACO%202021%20February%20Contest%20(Silver)/" rel="prev" title="USACO 2021 February Contest (Silver)">
-      <i class="fa fa-chevron-left"></i> USACO 2021 February Contest (Silver)
+    <a href="/bitmask-hacks/" rel="prev" title="비트마스크(BitMask) 고급 테크닉">
+      <i class="fa fa-chevron-left"></i> 비트마스크(BitMask) 고급 테크닉
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/04/27/USACO%202021%20January%20Contest%20(Silver)/" rel="next" title="USACO 2021 January Contest (Silver)">
-      USACO 2021 January Contest (Silver) <i class="fa fa-chevron-right"></i>
+    <a href="/Convex-hull/" rel="next" title="Convex Hull 구현">
+      Convex Hull 구현 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -289,7 +307,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotating-Calipers"><span class="nav-number">1.</span> <span class="nav-text">Rotating Calipers</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Comfortable-Cows"><span class="nav-number">1.</span> <span class="nav-text">Comfortable Cows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Year-of-the-Cow"><span class="nav-number">2.</span> <span class="nav-text">Year of the Cow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Just-Green-Enough"><span class="nav-number">3.</span> <span class="nav-text">Just Green Enough</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
