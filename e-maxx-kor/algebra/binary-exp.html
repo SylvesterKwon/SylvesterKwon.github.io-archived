@@ -20,16 +20,18 @@
     var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Binary ExponentiationBinary exponentiation (또는 exponentiation by squaring)은 $a^n$ 을 $O(\log n)$ 번의 곱셈만으로 계산할 수 있게 해주는 트릭이다 (나이브한 접근으로는 $O(n)$ 번의 곱셈이 필요하다). 굳이 곱셈이 아니더라도 결합법칙 (associative property) 을">
+  <meta name="description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.   Binary Expo">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ASIX&#39; AXIS">
+<meta property="og:title" content="Binary Exponentiation">
 <meta property="og:url" content="https://sylvesterkwon.github.io/e-maxx-kor/algebra/binary-exp.html">
 <meta property="og:site_name" content="ASIX&#39; AXIS">
-<meta property="og:description" content="Binary ExponentiationBinary exponentiation (또는 exponentiation by squaring)은 $a^n$ 을 $O(\log n)$ 번의 곱셈만으로 계산할 수 있게 해주는 트릭이다 (나이브한 접근으로는 $O(n)$ 번의 곱셈이 필요하다). 굳이 곱셈이 아니더라도 결합법칙 (associative property) 을">
+<meta property="og:description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.   Binary Expo">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2021-12-18T05:18:07.566Z">
-<meta property="article:modified_time" content="2021-12-18T05:18:07.566Z">
+<meta property="article:published_time" content="2021-12-18T05:45:00.000Z">
+<meta property="article:modified_time" content="2021-12-18T05:59:20.357Z">
 <meta property="article:author" content="Dohyun Kwon">
+<meta property="article:tag" content="e-maxx-kor">
+<meta property="article:tag" content=" algebra">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://sylvesterkwon.github.io/e-maxx-kor/algebra/binary-exp">
@@ -45,7 +47,7 @@
   };
 </script>
 
-  <title> | ASIX' AXIS
+  <title>Binary Exponentiation | ASIX' AXIS
 </title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
@@ -170,7 +172,7 @@
     <div class="post-block" lang="ko">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
+<h1 class="post-title" itemprop="name headline">Binary Exponentiation
 </h1>
 
 <div class="post-meta">
@@ -191,7 +193,10 @@
       
       
       <div class="post-body">
-          <!--?title Binary Exponentiation-->
+          <blockquote>
+<p>본 포스트는 <a href="http://e-maxx.ru/algo/" target="_blank" rel="noopener">e-maxx.ru/algo</a> 의 영문 번역본인 <a href="https://cp-algorithms.com/index.html" target="_blank" rel="noopener">cp-algorithms (e-maxx-eng)</a> 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 <a href="https://e-maxx.ru/about.php" target="_blank" rel="noopener">иванов максим</a> 이며, cp-algorithms 포스트의 기여자는 <a href="https://github.com/e-maxx-eng/e-maxx-eng/commits/master/src/algebra/binary-exp.md" target="_blank" rel="noopener">여기서</a> 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.</p>
+</blockquote>
+<!--?title Binary Exponentiation-->
 <h1 id="Binary-Exponentiation"><a href="#Binary-Exponentiation" class="headerlink" title="Binary Exponentiation"></a>Binary Exponentiation</h1><p>Binary exponentiation (또는 exponentiation by squaring)은 $a^n$ 을 $O(\log n)$ 번의 곱셈만으로 계산할 수 있게 해주는 트릭이다 (나이브한 접근으로는 $O(n)$ 번의 곱셈이 필요하다).</p>
 <p>굳이 곱셈이 아니더라도 <strong>결합법칙 (associative property)</strong> 을 성질로 가지는 모든 연산에 대해 사용할 수 있는 트릭이기 때문에, 다양한 상황에서 응용될 수 있다. 어떤 연산이 결합법칙을 성질로 가짐은 다음을 통해 보일 수 있다:</p>
 <script type="math/tex; mode=display">(X \cdot Y) \cdot Z = X \cdot (Y \cdot Z)</script><p>당연하게도, 이 트릭은 모듈러 곱, 행렬 곱이나 아래에서 소개할 다른 문제들을 푸는데 적용할 수 있다.</p>
@@ -474,6 +479,59 @@ a_{41} & a_ {42} & a_ {43} & a_ {44} \\\
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
