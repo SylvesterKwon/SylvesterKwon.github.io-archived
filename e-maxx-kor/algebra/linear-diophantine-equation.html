@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon_black.png">
+  <link rel="mask-icon" href="/images/favicon/favicon_black.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.  Linear Dioph">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Euclidean algorithm for computing the greatest common divisor">
+<meta property="og:url" content="https://sylvesterkwon.github.io/e-maxx-kor/algebra/linear-diophantine-equation.html">
+<meta property="og:site_name" content="ASIX&#39; AXIS">
+<meta property="og:description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.  Linear Dioph">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-12-18T05:45:00.000Z">
+<meta property="article:modified_time" content="2021-12-24T06:27:16.006Z">
+<meta property="article:author" content="Dohyun Kwon">
+<meta property="article:tag" content="e-maxx-kor">
+<meta property="article:tag" content=" algebra">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sylvesterkwon.github.io/e-maxx-kor/algebra/linear-diophantine-equation">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>Euclidean algorithm for computing the greatest common divisor | ASIX' AXIS
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-169818997-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ASIX' AXIS</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Dohyun Kwon's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-e-maxx-kor">
+
+    <a href="/e-maxx-kor/" rel="section"><i class="fa fa-book fa-fw"></i>e-maxx-kor</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="ko">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Euclidean algorithm for computing the greatest common divisor
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/e-maxx-kor/">E-MAXX-KOR</a></li>
+            <li><a href="/e-maxx-kor/algebra/">ALGEBRA</a></li>
+            <li>LINEAR-DIOPHANTINE-EQUATION</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <blockquote>
+<p>본 포스트는 <a href="http://e-maxx.ru/algo/" target="_blank" rel="noopener">e-maxx.ru/algo</a> 의 영문 번역본인 <a href="https://cp-algorithms.com/index.html" target="_blank" rel="noopener">cp-algorithms (e-maxx-eng)</a> 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 <a href="https://e-maxx.ru/about.php" target="_blank" rel="noopener">иванов максим</a> 이며, cp-algorithms 포스트의 기여자는 <a href="https://github.com/e-maxx-eng/e-maxx-eng/commits/master/src/algebra/linear-diophantine-equation.md" target="_blank" rel="noopener">여기서</a> 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.</p>
+</blockquote>
+<h1 id="Linear-Diophantine-Equation"><a href="#Linear-Diophantine-Equation" class="headerlink" title="Linear Diophantine Equation"></a>Linear Diophantine Equation</h1><p>A Linear Diophantine Equation (in two variables) is an equation of the general form:</p>
+<script type="math/tex; mode=display">ax + by = c</script><p>where $a$, $b$, $c$ are given integers, and $x$, $y$ are unknown integers.</p>
+<p>In this article, we consider several classical problems on these equations:</p>
+<ul>
+<li>finding one solution</li>
+<li>finding all solutions</li>
+<li>finding the number of solutions and the solutions themselves in a given interval</li>
+<li>finding a solution with minimum value of $x + y$</li>
+</ul>
+<h2 id="The-degenerate-case"><a href="#The-degenerate-case" class="headerlink" title="The degenerate case"></a>The degenerate case</h2><p>A degenerate case that need to be taken care of is when $a = b = 0$. It is easy to see that we either have no solutions or infinitely many solutions, depending on whether $c = 0$ or not. In the rest of this article, we will ignore this case.</p>
+<h2 id="Finding-a-solution"><a href="#Finding-a-solution" class="headerlink" title="Finding a solution"></a>Finding a solution</h2><p>To find one solution of the Diophantine equation with 2 unknowns, you can use the <a href="algebra/extended-euclid-algorithm.html">Extended Euclidean algorithm</a>. First, assume that $a$ and $b$ are non-negative. When we apply Extended Euclidean algorithm for $a$ and $b$, we can find their greatest common divisor $g$ and 2 numbers $x_g$ and $y_g$ such that:</p>
+<script type="math/tex; mode=display">a x_g + b y_g = g</script><p>If $c$ is divisible by $g = \gcd(a, b)$, then the given Diophantine equation has a solution, otherwise it does not have any solution. The proof is straight-forward: a linear combination of two numbers is divisible by their common divisor.</p>
+<p>Now supposed that $c$ is divisible by $g$, then we have:</p>
+<script type="math/tex; mode=display">a \cdot x_g \cdot \frac{c}{g} + b \cdot y_g \cdot \frac{c}{g} = c</script><p>Therefore one of the solutions of the Diophantine equation is:</p>
+<script type="math/tex; mode=display">x_0 = x_g \cdot \frac{c}{g},</script><script type="math/tex; mode=display">y_0 = y_g \cdot \frac{c}{g}.</script><p>The above idea still works when $a$ or $b$ or both of them are negative. We only need to change the sign of $x_0$ and $y_0$ when necessary.</p>
+<p>Finally, we can implement this idea as follows (note that this code does not consider the case $a = b = 0$):</p>
+<figure class="highlight cpp"><figcaption><span>linear_diophantine_any</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span>&amp; x, <span class="keyword">int</span>&amp; y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x1, y1;</span><br><span class="line">    <span class="keyword">int</span> d = gcd(b, a % b, x1, y1);</span><br><span class="line">    x = y1;</span><br><span class="line">    y = x1 - y1 * (a / b);</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">find_any_solution</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c, <span class="keyword">int</span> &amp;x0, <span class="keyword">int</span> &amp;y0, <span class="keyword">int</span> &amp;g)</span> </span>&#123;</span><br><span class="line">    g = gcd(<span class="built_in">abs</span>(a), <span class="built_in">abs</span>(b), x0, y0);</span><br><span class="line">    <span class="keyword">if</span> (c % g) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    x0 *= c / g;</span><br><span class="line">    y0 *= c / g;</span><br><span class="line">    <span class="keyword">if</span> (a &lt; <span class="number">0</span>) x0 = -x0;</span><br><span class="line">    <span class="keyword">if</span> (b &lt; <span class="number">0</span>) y0 = -y0;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Getting-all-solutions"><a href="#Getting-all-solutions" class="headerlink" title="Getting all solutions"></a>Getting all solutions</h2><p>From one solution $(x_0, y_0)$, we can obtain all the solutions of the given equation.</p>
+<p>Let $g = \gcd(a, b)$ and let $x_0, y_0$ be integers which satisfy the following:</p>
+<script type="math/tex; mode=display">a \cdot x_0 + b \cdot y_0 = c</script><p>Now, we should see that adding $b / g$ to $x_0$, and, at the same time subtracting $a / g$ from $y_0$ will not break the equality:</p>
+<script type="math/tex; mode=display">a \cdot \left(x_0 + \frac{b}{g}\right) + b \cdot \left(y_0 - \frac{a}{g}\right) = a \cdot x_0 + b \cdot y_0 + a \cdot \frac{b}{g} - b \cdot \frac{a}{g} = c</script><p>Obviously, this process can be repeated again, so all the numbers of the form:</p>
+<script type="math/tex; mode=display">x = x_0 + k \cdot \frac{b}{g}</script><script type="math/tex; mode=display">y = y_0 - k \cdot \frac{a}{g}</script><p>are solutions of the given Diophantine equation.</p>
+<p>Moreover, this is the set of all possible solutions of the given Diophantine equation.</p>
+<h2 id="Finding-the-number-of-solutions-and-the-solutions-in-a-given-interval"><a href="#Finding-the-number-of-solutions-and-the-solutions-in-a-given-interval" class="headerlink" title="Finding the number of solutions and the solutions in a given interval"></a>Finding the number of solutions and the solutions in a given interval</h2><p>From previous section, it should be clear that if we don’t impose any restrictions on the solutions, there would be infinite number of them. So in this section, we add some restrictions on the interval of $x$ and $y$, and we will try to count and enumerate all the solutions.</p>
+<p>Let there be two intervals: $[min_x; max_x]$ and $[min_y; max_y]$ and let’s say we only want to find the solutions in these two intervals.</p>
+<p>Note that if $a$ or $b$ is $0$, then the problem only has one solution. We don’t consider this case here.</p>
+<p>First, we can find a solution which have minimum value of $x$, such that $x \ge min_x$. To do this, we first find any solution of the Diophantine equation. Then, we shift this solution to get $x \ge min_x$ (using what we know about the set of all solutions in previous section). This can be done in $O(1)$.<br>Denote this minimum value of $x$ by $l_{x1}$.</p>
+<p>Similarly, we can find the maximum value of $x$ which satisfy $x \le max_x$. Denote this maximum value of $x$ by $r_{x1}$.</p>
+<p>Similarly, we can find the minimum value of $y$ $(y \ge min_y)$ and maximum values of $y$ $(y \le max_y)$. Denote the corresponding values of $x$ by $l_{x2}$ and $r_{x2}$.</p>
+<p>The final solution is all solutions with x in intersection of $[l_{x1}, r_{x1}]$ and $[l_{x2}, r_{x2}]$. Let denote this intersection by $[l_x, r_x]$.</p>
+<p>Following is the code implementing this idea.<br>Notice that we divide $a$ and $b$ at the beginning by $g$.<br>Since the equation $a x + b y = c$ is equivalent to the equation $\frac{a}{g} x + \frac{b}{g} y = \frac{c}{g}$, we can use this one instead and have $\gcd(\frac{a}{g}, \frac{b}{g}) = 1$, which simplifies the formulas.</p>
+<figure class="highlight cpp"><figcaption><span>linear_diophantine_all</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shift_solution</span><span class="params">(<span class="keyword">int</span> &amp; x, <span class="keyword">int</span> &amp; y, <span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> cnt)</span> </span>&#123;</span><br><span class="line">    x += cnt * b;</span><br><span class="line">    y -= cnt * a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_all_solutions</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c, <span class="keyword">int</span> minx, <span class="keyword">int</span> maxx, <span class="keyword">int</span> miny, <span class="keyword">int</span> maxy)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x, y, g;</span><br><span class="line">    <span class="keyword">if</span> (!find_any_solution(a, b, c, x, y, g))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    a /= g;</span><br><span class="line">    b /= g;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> sign_a = a &gt; <span class="number">0</span> ? +<span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> sign_b = b &gt; <span class="number">0</span> ? +<span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    shift_solution(x, y, a, b, (minx - x) / b);</span><br><span class="line">    <span class="keyword">if</span> (x &lt; minx)</span><br><span class="line">        shift_solution(x, y, a, b, sign_b);</span><br><span class="line">    <span class="keyword">if</span> (x &gt; maxx)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> lx1 = x;</span><br><span class="line"></span><br><span class="line">    shift_solution(x, y, a, b, (maxx - x) / b);</span><br><span class="line">    <span class="keyword">if</span> (x &gt; maxx)</span><br><span class="line">        shift_solution(x, y, a, b, -sign_b);</span><br><span class="line">    <span class="keyword">int</span> rx1 = x;</span><br><span class="line"></span><br><span class="line">    shift_solution(x, y, a, b, -(miny - y) / a);</span><br><span class="line">    <span class="keyword">if</span> (y &lt; miny)</span><br><span class="line">        shift_solution(x, y, a, b, -sign_a);</span><br><span class="line">    <span class="keyword">if</span> (y &gt; maxy)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> lx2 = x;</span><br><span class="line"></span><br><span class="line">    shift_solution(x, y, a, b, -(maxy - y) / a);</span><br><span class="line">    <span class="keyword">if</span> (y &gt; maxy)</span><br><span class="line">        shift_solution(x, y, a, b, sign_a);</span><br><span class="line">    <span class="keyword">int</span> rx2 = x;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lx2 &gt; rx2)</span><br><span class="line">        swap(lx2, rx2);</span><br><span class="line">    <span class="keyword">int</span> lx = max(lx1, lx2);</span><br><span class="line">    <span class="keyword">int</span> rx = min(rx1, rx2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lx &gt; rx)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> (rx - lx) / <span class="built_in">abs</span>(b) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Once we have $l_x$ and $r_x$, it is also simple to enumerate through all the solutions. Just need to iterate through $x = l_x + k \cdot \frac{b}{g}$ for all $k \ge 0$ until $x = r_x$, and find the corresponding $y$ values using the equation $a x + b y = c$.</p>
+<h2 id="Find-the-solution-with-minimum-value-of-x-y"><a href="#Find-the-solution-with-minimum-value-of-x-y" class="headerlink" title="Find the solution with minimum value of $x + y$"></a>Find the solution with minimum value of $x + y$</h2><p>Here, $x$ and $y$ also need to be given some restriction, otherwise, the answer may become negative infinity.</p>
+<p>The idea is similar to previous section: We find any solution of the Diophantine equation, and then shift the solution to satisfy some conditions.</p>
+<p>Finally, use the knowledge of the set of all solutions to find the minimum:</p>
+<script type="math/tex; mode=display">x' = x + k \cdot \frac{b}{g},</script><script type="math/tex; mode=display">y' = y - k \cdot \frac{a}{g}.</script><p>Note that $x + y$ change as follows:</p>
+<script type="math/tex; mode=display">x' + y' = x + y + k \cdot \left(\frac{b}{g} - \frac{a}{g}\right) = x + y + k \cdot \frac{b-a}{g}</script><p>If $a &lt; b$, we need to select smallest possible value of $k$. If $a &gt; b$, we need to select the largest possible value of $k$. If $a = b$, all solution will have the same sum $x + y$.</p>
+<h2 id="Practice-Problems"><a href="#Practice-Problems" class="headerlink" title="Practice Problems"></a>Practice Problems</h2><ul>
+<li><a href="http://www.spoj.com/problems/CEQU/" target="_blank" rel="noopener">Spoj - Crucial Equation</a></li>
+<li><a href="http://codeforces.com/problemsets/acmsguru/problem/99999/106" target="_blank" rel="noopener">SGU 106</a></li>
+<li><a href="http://codeforces.com/contest/633/problem/A" target="_blank" rel="noopener">Codeforces - Ebony and Ivory</a></li>
+<li><a href="https://www.codechef.com/problems/COPR16G" target="_blank" rel="noopener">Codechef - Get AC in one go</a></li>
+<li><a href="http://www.lightoj.com/volume_showproblem.php?problem=1306" target="_blank" rel="noopener">LightOj - Solutions to an equation</a></li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/e-maxx-kor/">E-MAXX-KOR</a></li>
+            <li><a href="/e-maxx-kor/algebra/">ALGEBRA</a></li>
+            <li>LINEAR-DIOPHANTINE-EQUATION</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linear-Diophantine-Equation"><span class="nav-number">1.</span> <span class="nav-text">Linear Diophantine Equation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-degenerate-case"><span class="nav-number">1.1.</span> <span class="nav-text">The degenerate case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-a-solution"><span class="nav-number">1.2.</span> <span class="nav-text">Finding a solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-all-solutions"><span class="nav-number">1.3.</span> <span class="nav-text">Getting all solutions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-the-number-of-solutions-and-the-solutions-in-a-given-interval"><span class="nav-number">1.4.</span> <span class="nav-text">Finding the number of solutions and the solutions in a given interval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Find-the-solution-with-minimum-value-of-x-y"><span class="nav-number">1.5.</span> <span class="nav-text">Find the solution with minimum value of $x + y$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practice-Problems"><span class="nav-number">1.6.</span> <span class="nav-text">Practice Problems</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Dohyun Kwon</p>
+  <div class="site-description" itemprop="description">Computer Science / Problem Solving / Competitive Programming</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SylvesterKwon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SylvesterKwon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:asix71@gmail.com" title="E-Mail → mailto:asix71@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/ASIX_KWON" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;ASIX_KWON" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dohyun Kwon</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
