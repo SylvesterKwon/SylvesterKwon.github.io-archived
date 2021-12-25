@@ -28,7 +28,7 @@
 <meta property="og:description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.  확장 유클리드 호제법">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-12-25T05:16:00.000Z">
-<meta property="article:modified_time" content="2021-12-25T05:25:05.829Z">
+<meta property="article:modified_time" content="2021-12-25T05:45:44.366Z">
 <meta property="article:author" content="Dohyun Kwon">
 <meta property="article:tag" content="e-maxx-kor">
 <meta property="article:tag" content=" algebra">
@@ -200,8 +200,8 @@
 <script type="math/tex; mode=display">a \cdot x + b \cdot y = \gcd(a, b)</script><p>여기서 중요한 것은 언제나 위와 같은 표현을 찾을 수 있다는 것이다. 예를 들어서, $\gcd(55, 80) = 5$ 이기 때문에, 우리는 $5$ 를 항 $55$ 와 $80$ 에 대한 선형결합을 사용하여 나타낼 수 있다: $55 \cdot 3 + 80 \cdot (-2) = 5$ </p>
 <p>이 문제의 보다 일반적인 형태는 <a href="./linear-diophantine-equation.html">선형 디오판토스 방정식 (Linear Diophantine Equations)</a>에서 다루고 있다.<br>그것은 여기서 다루고 있는 알고리즘을 기반으로 할 것이다. </p>
 <h2 id="알고리즘"><a href="#알고리즘" class="headerlink" title="알고리즘"></a>알고리즘</h2><p>이 섹션에서는 $a$ 와 $b$ 에 대한 최대공약수를 $g$ 라고 표기할 것이다.</p>
-<p>기존의 유클리드 호제법에서 아주 간단한 변형만 하면 된다.<br>유클리드 호제법을 다시 떠올려 보면, 알고리즘은 항상 $b = 0$ 와 $a = g$ 인 상태에서 끝나는 것을 알 수 있다.<br>이런 매개변수에 대해서는 쉽게 방정식의 계수를 찾을 수 있는데, $g \cdot 1 + 0 \cdot 0 = g$ 라고 할 수 있다. </p>
-<p>이 계수들로 부터 시작해서 $(x, y) = (1, 0)$, 재귀 호출을 역으로 추적해볼 것이다.<br>여기서는 계수 $x$ 와 $y$ 가 $(a, b)$ 가 $(b, a \bmod b)$ 로 변하는 동안 어떻게 변하는 지만 알면 된다. </p>
+<p>기존의 유클리드 호제법에서 아주 간단한 변형만 하면 된다. 유클리드 호제법을 다시 떠올려 보면, 알고리즘은 항상 $b = 0$ 와 $a = g$ 인 상태에서 끝나는 것을 알 수 있다. 이런 매개변수에 대해서는 쉽게 방정식의 계수를 찾을 수 있는데, $g \cdot 1 + 0 \cdot 0 = g$ 라고 할 수 있다. </p>
+<p>$(x, y) = (1, 0)$ 계수에서 시작해서, 재귀 호출을 역으로 추적해볼 것이다. 여기서는 계수 $x$ 와 $y$ 가 $(a, b)$ 가 $(b, a \bmod b)$ 로 변하는 동안 어떻게 변하는 지만 알면 된다. </p>
 <p>$(b, a \bmod b)$ 단계의 계수 $(x_1, y_1)$ 를 찾았다고 가정해보자:</p>
 <script type="math/tex; mode=display">b \cdot x_1 + (a \bmod b) \cdot y_1 = g</script><p>그리고 $(a, b)$ 를 위한 쌍 $(x, y)$ 을 찾고 싶다:</p>
 <script type="math/tex; mode=display">a \cdot x + b \cdot y = g</script><p>우리는 $a \bmod b$ 를 다음과 같이 나타낼 수 있다:</p>
