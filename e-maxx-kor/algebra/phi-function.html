@@ -28,7 +28,7 @@
 <meta property="og:description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.  오일러 피 함수오일러">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-12-26T11:48:00.000Z">
-<meta property="article:modified_time" content="2021-12-26T12:17:23.021Z">
+<meta property="article:modified_time" content="2021-12-26T12:29:33.241Z">
 <meta property="article:author" content="Dohyun Kwon">
 <meta property="article:tag" content="e-maxx-kor">
 <meta property="article:tag" content=" algebra">
@@ -196,7 +196,7 @@
           <blockquote>
 <p>본 포스트는 <a href="http://e-maxx.ru/algo/" target="_blank" rel="noopener">e-maxx.ru/algo</a> 의 영문 번역본인 <a href="https://cp-algorithms.com/index.html" target="_blank" rel="noopener">cp-algorithms (e-maxx-eng)</a> 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 <a href="https://e-maxx.ru/about.php" target="_blank" rel="noopener">иванов максим</a> 이며, cp-algorithms 포스트의 기여자는 <a href="https://github.com/e-maxx-eng/e-maxx-eng/commits/master/src/algebra/phi-function.md" target="_blank" rel="noopener">여기서</a> 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.</p>
 </blockquote>
-<h1 id="오일러-피-함수"><a href="#오일러-피-함수" class="headerlink" title="오일러 피 함수"></a>오일러 피 함수</h1><p><strong>오일러 피 함수</strong> $\phi(n)$는 1부터 $n$까지의 정수 중 $n$과 서로소인 것의 개수를 세는 함수이다. 두 수의 최대공약수가 1일 때, 두 수는 서로소이다(1은 모든 수와 서로소인 것으로 간주된다).</p>
+<h1 id="오일러-피-함수"><a href="#오일러-피-함수" class="headerlink" title="오일러 피 함수"></a>오일러 피 함수</h1><p><strong>오일러 피 함수 (Euler’s phi (totient) function))</strong> $\phi(n)$는 1부터 $n$까지의 정수 중 $n$과 서로소인 것의 개수를 세는 함수이다. 두 수의 최대공약수가 1일 때, 두 수는 서로소이다(1은 모든 수와 서로소인 것으로 간주된다).</p>
 <p>처음 몇 개의 자연수에 대해 $\phi(n)$의 값은 다음과 같다:</p>
 <script type="math/tex; mode=display">\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
@@ -223,12 +223,12 @@ $$\phi(ab) = \phi(a) \cdot \phi(b) \cdot \dfrac{d}{\phi(d)}$$
 </ul>
 
 <p>처음 세 성질과 $n$의 소인수분해를 이용하여 $\phi(n)$를 계산할 수 있다. $n = {p_1}^{a_1} \cdot {p_2}^{a_2} \cdots {p_k}^{a_k}$, $p_i$는 각각 소수일 때, 다음 등식이 성립한다.</p>
-<script type="math/tex; mode=display">\begin{align}
+<script type="math/tex; mode=display">\begin{align*}
 \phi (n) &= \phi ({p_1}^{a_1}) \cdot \phi ({p_2}^{a_2}) \cdots  \phi ({p_k}^{a_k}) \\\\
 &= \left({p_1}^{a_1} - {p_1}^{a_1 - 1}\right) \cdot \left({p_2}^{a_2} - {p_2}^{a_2 - 1}\right) \cdots \left({p_k}^{a_k} - {p_k}^{a_k - 1}\right) \\\\
 &= p_1^{a_1} \cdot \left(1 - \frac{1}{p_1}\right) \cdot p_2^{a_2} \cdot \left(1 - \frac{1}{p_2}\right) \cdots p_k^{a_k} \cdot \left(1 - \frac{1}{p_k}\right) \\\\
 &= n \cdot \left(1 - \frac{1}{p_1}\right) \cdot \left(1 - \frac{1}{p_2}\right) \cdots \left(1 - \frac{1}{p_k}\right)
-\end{align}</script><h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><p>$O(\sqrt{n})$ 계산 복잡도의 소인수분해를 사용한 구현:</p>
+\end{align*}</script><h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><p>$O(\sqrt{n})$ 계산 복잡도의 소인수분해를 사용한 구현:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">phi</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (n % i == <span class="number">0</span>)</span><br><span class="line">                n /= i;</span><br><span class="line">            result -= result / i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n &gt; <span class="number">1</span>)</span><br><span class="line">        result -= result / n;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="1-부터-n-까지-오일러-피-함수-구하기-O-n-log-log-n-계산-복잡도"><a href="#1-부터-n-까지-오일러-피-함수-구하기-O-n-log-log-n-계산-복잡도" class="headerlink" title="$1$부터 $n$까지 오일러 피 함수 구하기: $O(n \log log{n})$ 계산 복잡도"></a>$1$부터 $n$까지 오일러 피 함수 구하기: $O(n \log log{n})$ 계산 복잡도</h2><p>만약 $1$부터 $n$까지의 모든 수에 대해 오일러 피 함수값이 필요하다면, 각각의 수 $n$개를 모두 소인수분해하는 것은 효율적이지 않다.<br><a href="algebra/sieve-of-eratosthenes.html">에라토스테네스의 체</a>에서 썼던 아이디어를 적용할 수 있다. 위에서 보인 성질을 사용할 것이지만, 각각의 수에 대해 각 소인수마다 중간 결과를 갱신하는 대신, 우선 모든 소수를 찾은 후 각 소수에 대해 그로 나누어 떨어지는 모든 수에 대해 중간 결과를 갱신하는 방법을 사용한다.</p>
 <p>이러한 접근은 근본적으로 에라토스테네스의 체와 같기 때문에, 계산 복잡도 또한 $O(n \log \log n)$으로 같다.</p>
@@ -246,12 +246,12 @@ $$\phi(ab) = \phi(a) \cdot \phi(b) \cdot \dfrac{d}{\phi(d)}$$
 <h2 id="일반화"><a href="#일반화" class="headerlink" title="일반화"></a>일반화</h2><p>서로소가 아닌 $x$, $m$에 대해 $x^n \bmod m$을 효율적으로 계산하는 마지막 합동식의 잘 알려지지 않은 변형이 있다. 임의의 $x, m$와 $n \geq \log_2 m$에 대해 다음 합동식이 성립한다.</p>
 <script type="math/tex; mode=display">x^{n}\equiv x^{\phi(m)+[n \bmod \phi(m)]} \mod m</script><p>증명:</p>
 <p>$p_1, \dots, p_t$를 $x$와 $m$ 공통 소인수라고 하고, $k_i$를 $p_i$가 $m$을 나누는 횟수라고 하자.<br>$a = p_1^{k_1} \dots p_t^{k_t}$으로 정의하면 $\frac{m}{a}$와 $x$는 서로소이다.<br>$a$가 $x^k$를 나누도록 하는 정수 중 가장 작은 것을 $k$라고 하자.<br>$n \ge k$를 가정하면 다음과 같이 쓸 수 있다:</p>
-<script type="math/tex; mode=display">\begin{align}x^n \bmod m &= \frac{x^k}{a}ax^{n-k}\bmod m \\\\
+<script type="math/tex; mode=display">\begin{align*}x^n \bmod m &= \frac{x^k}{a}ax^{n-k}\bmod m \\\\
 &= \frac{x^k}{a}\left(ax^{n-k}\bmod m\right) \bmod m \\\\
 &= \frac{x^k}{a}\left(ax^{n-k}\bmod a \frac{m}{a}\right) \bmod m \\\\
 &=\frac{x^k}{a} a \left(x^{n-k} \bmod \frac{m}{a}\right)\bmod m \\\\
 &= x^k\left(x^{n-k} \bmod \frac{m}{a}\right)\bmod m
-\end{align}</script><p>세번째 줄과 네번째 줄 사이의 합동은 $ab \bmod ac = a(b \bmod c)$이므로 성립한다.<br>$b = cd + r$, $r &lt; c$일 때, $ab = acd + ar$, $ar &lt; ac$임을 관찰하자.</p>
+\end{align*}</script><p>세번째 줄과 네번째 줄 사이의 합동은 $ab \bmod ac = a(b \bmod c)$이므로 성립한다.<br>$b = cd + r$, $r &lt; c$일 때, $ab = acd + ar$, $ar &lt; ac$임을 관찰하자.</p>
 <p>$x$와 $\frac{m}{a}$는 서로소이므로, 오일러 정리를 사용하여 다음 공식을 얻는다. </p>
 <script type="math/tex; mode=display">x^n \bmod m = x^k\left(x^{n-k \bmod \phi(\frac{m}{a})} \bmod \frac{m}{a}\right)\bmod m.</script><p>$k$가 아주 작으므로 (사실 $k \le \log_2 m$이다) 이는 효율적으로 계산할 수 있다.</p>
 <p>이 공식은 적용하기 어렵지만, $x^n \bmod m$의 행동을 분석하기 위해 사용할 수 있다. 거듭제곱으로 이루어진 수열 $(x^1 \bmod m, x^2 \bmod m, x^3 \bmod m, \dots)$은 첫 $k$개의 항 이후 길이 $\phi\left(\frac{m}{a}\right)$인 순환에 진입한다. $a$, $\frac{m}{a}$는 서로소이므로 $\phi(a) \cdot \phi\left(\frac{m}{a}\right) = \phi(m)$를 얻는다. 특히, $\phi(m)$은 $\phi\left(\frac{m}{a}\right)$으로 나누어 떨어진다. 따라서 이 순환이 길이 $\phi(m)$를 갖는다고 말할 수도 있다. $\phi(m) \ge \log_2 m \ge k$으로부터, 목표했던 더욱 간단한 공식을 얻는다:</p>
