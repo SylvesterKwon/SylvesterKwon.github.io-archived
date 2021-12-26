@@ -28,7 +28,7 @@
 <meta property="og:description" content="본 포스트는 e-maxx.ru&#x2F;algo 의 영문 번역본인 cp-algorithms (e-maxx-eng) 를 한국어로 번역한 것입니다. e-maxx 포스트의 저자는 иванов максим 이며, cp-algorithms 포스트의 기여자는 여기서 확인하실 수 있습니다. 본 포스트는 CC-BY-SA-4.0 License를 따릅니다.  선형 디오판토스 방정식">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-12-26T07:14:00.000Z">
-<meta property="article:modified_time" content="2021-12-26T08:36:18.863Z">
+<meta property="article:modified_time" content="2021-12-26T08:48:04.303Z">
 <meta property="article:author" content="Dohyun Kwon">
 <meta property="article:tag" content="e-maxx-kor">
 <meta property="article:tag" content=" algebra">
@@ -230,8 +230,8 @@
 <p>여기서 $l_x$ 와 $r_x$ 를 알기 때문에, 모든 해를 나열하는 것은 너무나도 간단하다. 모든 $k \ge 0$ 에 대하여 $x = r_x$ 일 때까지 $x = l_x + k \cdot \frac{b}{g}$ 를 반복하고 방정식 $a x + b y = c$ 를 사용하여 각각 해당되는 $y$ 값을 각각 구해주기만 하면 된다.</p>
 <h2 id="x-y-가-최소가-되는-해-구하기"><a href="#x-y-가-최소가-되는-해-구하기" class="headerlink" title="$x + y$ 가 최소가 되는 해 구하기"></a>$x + y$ 가 최소가 되는 해 구하기</h2><p>이 섹션도 마찬가지로 $x$ 와 $y$ 에 대한 제한이 필요한데, 제한이 없다면 답은 음의 무한이 될 것이다.</p>
 <p>아이디어는 이전의 섹션과 비슷하다: 디오판토스 방정식의 아무 해나 찾은 이후, 몇가지 조건을 만족시키기 위해 해를 “쉬프트” 할 것이다.</p>
-<p>마침내, use the knowledge of the set of all solutions to find the minimum:</p>
-<script type="math/tex; mode=display">x' = x + k \cdot \frac{b}{g},</script><script type="math/tex; mode=display">y' = y - k \cdot \frac{a}{g}.</script><p>Note that $x + y$ change as follows:</p>
+<p>마침내, 최소값을 찾기 위해 모든 해의 집합을 찾는 방법을 사용한다:</p>
+<script type="math/tex; mode=display">x' = x + k \cdot \frac{b}{g},</script><script type="math/tex; mode=display">y' = y - k \cdot \frac{a}{g}.</script><p>$x + y$ 는 다음과 같이 변화한다:</p>
 <script type="math/tex; mode=display">x' + y' = x + y + k \cdot \left(\frac{b}{g} - \frac{a}{g}\right) = x + y + k \cdot \frac{b-a}{g}</script><p>만약 $a &lt; b$ 라면, 가능한 최소 $k$ 값을 선택해야할 것이다. 만약 $a &gt; b$ 라면, 가능한 최대 $k$ 값을 선택해야할 것이다. 만약 $a = b$ 라면, 모든 해는 동일한 합 $x + y$ 를 가질 것이다.</p>
 <h2 id="연습-문제"><a href="#연습-문제" class="headerlink" title="연습 문제"></a>연습 문제</h2><ul>
 <li><a href="http://www.spoj.com/problems/CEQU/" target="_blank" rel="noopener">Spoj - Crucial Equation</a></li>
