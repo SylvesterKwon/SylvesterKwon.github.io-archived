@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon_black.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon_black.png">
+  <link rel="mask-icon" href="/images/favicon/favicon_black.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="에라토스테네스의 체에라토스테네스의 체는 구간 $[1;n]$ 에 있는 모든 소수들을 $O(n \log \log n)$ 번의 연산만으로 찾아내는 알고리즘이다. 알고리즘은 매우 간단하다:처음에는 2 와 $n$ 사이의 모든 수를 적는다. 그 다음 2의 적절한 배수인 모든 수를 합성수라고 표기한다 (2가 가장 작은 소수이기 때문이다). 여기서 $x$ 의 적절한 배수">
+<meta property="og:type" content="website">
+<meta property="og:title" content="에라토스테네스의 체">
+<meta property="og:url" content="https://sylvesterkwon.github.io/e-maxx-kor/algebra/sieve-of-eratosthenes.html">
+<meta property="og:site_name" content="ASIX&#39; AXIS">
+<meta property="og:description" content="에라토스테네스의 체에라토스테네스의 체는 구간 $[1;n]$ 에 있는 모든 소수들을 $O(n \log \log n)$ 번의 연산만으로 찾아내는 알고리즘이다. 알고리즘은 매우 간단하다:처음에는 2 와 $n$ 사이의 모든 수를 적는다. 그 다음 2의 적절한 배수인 모든 수를 합성수라고 표기한다 (2가 가장 작은 소수이기 때문이다). 여기서 $x$ 의 적절한 배수">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://cp-algorithms.com/img/sieve_eratosthenes.png">
+<meta property="article:published_time" content="2022-01-07T08:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-07T10:08:02.838Z">
+<meta property="article:author" content="Dohyun Kwon">
+<meta property="article:tag" content="e-maxx-kor">
+<meta property="article:tag" content=" algebra">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cp-algorithms.com/img/sieve_eratosthenes.png">
+
+<link rel="canonical" href="https://sylvesterkwon.github.io/e-maxx-kor/algebra/sieve-of-eratosthenes">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>에라토스테네스의 체 | ASIX' AXIS
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-169818997-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ASIX' AXIS</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Dohyun Kwon's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-e-maxx-kor">
+
+    <a href="/e-maxx-kor/" rel="section"><i class="fa fa-book fa-fw"></i>e-maxx-kor</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="ko">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">에라토스테네스의 체
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/e-maxx-kor/">E-MAXX-KOR</a></li>
+            <li><a href="/e-maxx-kor/algebra/">ALGEBRA</a></li>
+            <li>SIEVE-OF-ERATOSTHENES</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="에라토스테네스의-체"><a href="#에라토스테네스의-체" class="headerlink" title="에라토스테네스의 체"></a>에라토스테네스의 체</h1><p>에라토스테네스의 체는 구간 $[1;n]$ 에 있는 모든 소수들을 $O(n \log \log n)$ 번의 연산만으로 찾아내는 알고리즘이다.</p>
+<p>알고리즘은 매우 간단하다:<br>처음에는 2 와 $n$ 사이의 모든 수를 적는다. 그 다음 2의 적절한 배수인 모든 수를 합성수라고 표기한다 (2가 가장 작은 소수이기 때문이다). 여기서 $x$ 의 적절한 배수란, $x$ 보다 크면서 $x$ 로 나눌 수 있는 수를 말한다. 그 다음은, 합성수로 표기되지 않은 다음 수를 구하는데, 다음의 수는 3이 될 것이다. 이것은 3이 소수임을 의미한다. 그리고 마찬가지로 3의 모든 적절한 배수를 합성수라고 표기한다. 그 다음의 표기되지 않은 수, 즉 다음 소수는 5이다. 그리고 5의 적절한 배수를 합성수라고 표기한다. 주어진 모든 수에 대해 위 과정을 반복한다. </p>
+<p>다음 그림은 위 알고리즘을 사용하여 구간 $[1; 16]$ 의 모든 소수를 구하는 과정을 시각화한 것이다. 보여지는 것 처럼, 어떤 수를 합성수로 표기하는 일은 꽤 자주 일어난다.</p>
+<p><img src="https://cp-algorithms.com/img/sieve_eratosthenes.png" alt="에라토스테네스의 체"></p>
+<p>이 알고리즘의 아이디어는 다음과 같다:<br>만약 어떤 수보다 작은 소수가 해당 수를 나누지 못한다면, 그 수는 소수이다. 이 알고리즘에서는 각 소수들에 대하여 순차적으로 반복하기 때문에, 하나의 소수로라도 나누어지는 수들에 대해서는 이미 모두 합성수라고 표기했다. 따라서 어떤 수가 해당 이터레이션에도 여전히 표기되어있지 않다면, 그 수보다 작은 어떠한 소수로도 나눌 수 없었다는 의미이고 따라서 이는 해당 수가 소수임을 의미한다.</p>
+<h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">is_prime</span><span class="params">(n+<span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">is_prime[<span class="number">0</span>] = is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (is_prime[i] &amp;&amp; (<span class="keyword">long</span> <span class="keyword">long</span>)i * i &lt;= n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">            is_prime[j] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이 코드는 우선 $0$과 $1$을 제외한 모든 수들에 대해 “잠재적인 소수”라고 표기하고 합성수들을 선별하는 과정을 시작하게 된다. 이를 위해 이 알고리즘은 $2$ 에서 $n$ 까지의 모든 수들에 대해 반복한다. 만약 현재 수 $i$가 소수라면, 이 단계에서 $i^2$부터 시작해서 $i$ 의 배수인 모든 수들을 합성수라고 표기한다. 이 구현은 이미 한가지 최적화를 포함하고 있는데, 소수 $i$에 대해 $i^2$ 보다 작은 합성수들은 이미 $i$ 보다 작은 소인수를 가지기 때문에 거르지 않아도 된다. 다만 $i^2$ 가 <code>int</code> 형의 범위를 초과할 수 있기 때문에, 중첩된 루프문전에 <code>long long</code> 형을 사용하여 이를 방지해야한다.</p>
+<p>이러한 구현을 사용하면 알고리즘은 $O(n)$ 의 메모리와 (이는 자명하다) $O(n \log \log n)$ 의 수행시간을 가질 것이다 (이는 자명하지 않기에, 다음 챕터에서 다룬다).</p>
+<h2 id="점근적-분석"><a href="#점근적-분석" class="headerlink" title="점근적 분석"></a>점근적 분석</h2><p>이 알고리즘의 수행시간이 $O(n \log \log n)$ 라는 것을 증명해보자. 이 알고리즘은 각 소수 $p \le n$ 에 대해서 내부 루프에서 $\frac{n}{p}$ 번의 연산을 수행할 것이다. 따라서 다음 식을 평가해야 한다:</p>
+<script type="math/tex; mode=display">\sum_{\substack{p \le n, \\\ p \text{ prime}}} \frac n p = n \cdot \sum_{\substack{p \le n, \\\ p \text{ prime}}} \frac 1 p.</script><p>두가지 사실을 상기해보자.</p>
+<ul>
+<li>$n$ 보다 작거나 같은 소수들의 개수는 근사적으로 $\frac n {\ln n}$ 이다.</li>
+<li>$k$번째 소수는 근사적으로 $k \ln k$ 이다 (이것은 앞의 사실로 부터 바로 유도할 수 있다).</li>
+</ul>
+<p>그래서 우리는 위의 식을 다음과 같이 나타낼 수 있다:</p>
+<script type="math/tex; mode=display">\sum_{\substack{p \le n, \\\ p \text{ prime}}} \frac 1 p \approx \frac 1 2 + \sum_{k = 2}^{\frac n {\ln n}} \frac 1 {k \ln k}.</script><p>첫번째 소수인 2를 합에서 제외했는데, 왜냐하면 $k = 1$ 인 경우, $k \ln k$ 는 $0$ 이고 이는 0으로 나누는 상황을 초래하기 때문이다.</p>
+<p>이제 같은 함수를 $k$ 에 대해서 $2$ 부터 $\frac n {\ln n}$ 까지 적분하여 합을 평가하자 (이 합은 직사각형 방법을 통해 적분으로 근사될 수 있다):</p>
+<script type="math/tex; mode=display">\sum_{k = 2}^{\frac n {\ln n}} \frac 1 {k \ln k} \approx \int_2^{\frac n {\ln n}} \frac 1 {k \ln k} dk.</script><p>피적분함수의 원시함수는 $\ln \ln k$ 이다. 치환과 낮은 차수의 항을 제거하여 다음과 같은 결과를 얻는다:</p>
+<script type="math/tex; mode=display">\int_2^{\frac n {\ln n}} \frac 1 {k \ln k} dk = \ln \ln \frac n {\ln n} - \ln \ln 2 = \ln(\ln n - \ln \ln n) - \ln \ln 2 \approx \ln \ln n.</script><p>이제, 원래 식으로 돌아오면 다음과 같은 근사 식을 얻을 수 있다:</p>
+<script type="math/tex; mode=display">\sum_{\substack{p \le n, \\\ p\ is\ prime}} \frac n p \approx n \ln \ln n + o(n).</script><p>더욱 자세한 증명은 (연산횟수의 상수항에 대해서도 더욱 자세한 평가가 필요하다면) Hardy &amp; Wright 의 책 “An Introduction to the Theory of Numbers” (p. 349) 에서 확인할 수 있다.</p>
+<h2 id="에라토스테네스의-체의-여러-최적화-기법"><a href="#에라토스테네스의-체의-여러-최적화-기법" class="headerlink" title="에라토스테네스의 체의 여러 최적화 기법"></a>에라토스테네스의 체의 여러 최적화 기법</h2><p>이 알고리즘의 가장 큰 단점은, 메모리를 여러번 훑으면서, 오직 단일 요소만 조작한다는 것이다. 그리고 이는 캐시 친화적이지 못하다. 따라서, $O(n \log \log n)$ 에 감추어져있는 상수항은 비교적으로 크다고 할 수 있다..</p>
+<p>게다가, 이 알고리즘에 소비되는 메모리는 큰 $n$ 에 대해 병목을 초래할 것이다.</p>
+<p>아래에 소개되는 방법들은 수행되는 연산들의 횟수와 메모리를 체감되게 줄여줄 것이다.</p>
+<h3 id="제곱근까지만-거르기"><a href="#제곱근까지만-거르기" class="headerlink" title="제곱근까지만 거르기"></a>제곱근까지만 거르기</h3><p>명백하게도, $n$ 까지의 모든 소수를 구하기 위해서는, $n$의 제곱근 이하인 소수들에 대해서만 거르기를 수행해도 충분할 것이다.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">is_prime</span><span class="params">(n+<span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">is_prime[<span class="number">0</span>] = is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (is_prime[i]) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">            is_prime[j] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이러한 최적화는 복잡도에 영향을 주지 않는다 (실제로 위의 증명을 다시 사용해보면, $n \ln \ln \sqrt n + o(n)$ 회의 연산이 필요함을 알 수 있는데, 이는 로그의 성질에 의해 점근적으로 동일하다), 그러나 필요한 연산의 횟수는 체감될만큼 줄어들 것이다.</p>
+<h3 id="홀수만-거르기"><a href="#홀수만-거르기" class="headerlink" title="홀수만 거르기"></a>홀수만 거르기</h3><p>$2$를 제외한 모든 짝수가 합성수이기 때문에, 짝수는 확인하지 않아도 된다. 따라서 홀수에 대해서만 수행해도 된다.</p>
+<p>이 방법을 사용하면 알고리즘의 필요 메모리와 수행시간을 대략 절반정도 줄일 수 있다.</p>
+<h3 id="메모리-소비와-연산의-속도"><a href="#메모리-소비와-연산의-속도" class="headerlink" title="메모리 소비와 연산의 속도"></a>메모리 소비와 연산의 속도</h3><p>우리는 에라토스테네스 체의 두 구현이 <code>vector&lt;bool&gt;</code> 자료구조를 사용하여 $n$ 비트의 메모리를 사용한다는 것에 주목해야한다. <code>vector&lt;bool&gt;</code> 는 일련의 <code>bool</code> 을 저장하는 정규 컨테이너가 아니다 (대부분의 컴퓨터 아키텍쳐에서는 <code>bool</code>은 1 바이트의 메모리를 차지한다). 이것은 <code>vector&lt;T&gt;</code> 에서 메모리 최적화를 위해 특수화된 것인데, 이것은 오직 $\frac{N}{8}$ 바이트의 메모리만 소비한다.</p>
+<p>현대의 프로세서들의 구조는 특정 비트에 직접 접근할 수 없기 때문에, 비트보다는 바이트 단위로 작업하는 것에 훨씬 효율적이다. 그래서 사실 <code>vector&lt;bool&gt;</code> 는 비트를 연속적인 큰 메모리에 저장하고, 바이트 단위로 메모리에 접근하여 비트 마스킹이나 비트 쉬프트 같은 연산을 사용하여 특정 비트를 추출하거나 조작한다.</p>
+<p>그것 때문에 <code>vector&lt;bool&gt;</code> 에서 비트를 읽거나 쓰는 것에는 오버헤드가 크기 때문에 <code>vector&lt;char&gt;</code> (각 원소마다 1 바이트의 메모리를 사용하기 때문에 사용하는 메모리는 8배 크다) 를 사용하는 경우가 빠른 경우가 많다.</p>
+<p>하지만 에라토스테네스의 단순한 구현에 대해서는 <code>vector&lt;bool&gt;</code> 가 더 빠른것으로 밝혀졌다. 이 문제에서는 데이터를 캐시에 얼마나 빠르게 로드하느냐가 중요하기 때문에, 메모리를 적게 쓰는 것이 큰 이점을 가져다 준다.<br>이 (<a href="https://gist.github.com/jakobkogler/e6359ea9ced24fe304f1a8af3c9bee0e" target="_blank" rel="noopener">벤치마크</a>) 에서 보여주듯, <code>vector&lt;bool&gt;</code> 를 사용하는 것이 <code>vector&lt;char&gt;</code>를 사용하는 것 보다 1.4배에서 1.7배 정도 빠르다고 한다.</p>
+<p><code>bitset</code> 도 위와 같은 고려를 해볼 수 있다. 이것은 <code>vector&lt;bool&gt;</code> 와 마찬가지로 비트들을 저장하는데 효율적인 방법인데, 그래서 이것도 오직 $\frac{N}{8}$ 바이트의 메모리만을 차지한다, 하지만 원소에 접근하는 것은 조금 더 느릴 수 있다. 위의 벤치마크 에서 <code>bitset</code> 은 <code>vector&lt;bool&gt;</code> 보다 성능면에서 뒤떨어지는 것으로 나온다. 그리고 <code>bitset</code> 의 또 다른 단점은 컴파일 타임에 그것의 크기를 지정해줘야 한다는 것이다.</p>
+<h3 id="Segmented-Sieve"><a href="#Segmented-Sieve" class="headerlink" title="Segmented Sieve"></a>Segmented Sieve</h3><p>이것은 항상 <code>is_prime[1...n]</code> 전체를 유지할 필요가 없기 때문에 “제곱근까지만 거르기” 최적화 기법에서 비롯된다.<br>For sieving it is enough to just keep the prime numbers until the root of $n$, i.e. <code>prime[1... sqrt(n)]</code>, split the complete range into blocks, and sieve each block separately.</p>
+<p>Let $s$ be a constant which determines the size of the block, then we have $\lceil {\frac n s} \rceil$ blocks altogether, and the block $k$ ($k = 0 … \lfloor {\frac n s} \rfloor$) contains the numbers in a segment $[ks; ks + s - 1]$.<br>We can work on blocks by turns, i.e. for every block $k$ we will go through all the prime numbers (from $1$ to $\sqrt n$) and perform sieving using them.<br>It is worth noting, that we have to modify the strategy a little bit when handling the first numbers: first, all the prime numbers from $[1; \sqrt n]$  shouldn’t remove themselves; and second, the numbers $0$ and $1$ should be marked as non-prime numbers.<br>While working on the last block it should not be forgotten that the last needed number $n$ is not necessary located in the end of the block.</p>
+<p>As discussed previously, the typical implementation of the Sieve of Eratosthenes is limited by the speed how fast you can load data into the CPU caches.<br>By splitting the range of potential prime numbers $[1; n]$ into smaller blocks, we never have to keep multiple blocks in memory at the same time, and all operations are much more cache-friendlier.<br>As we are now no longer limited by the cache speeds, we can replace the <code>vector&lt;bool&gt;</code> with a <code>vector&lt;char&gt;</code>, and gain some additional performance as the processors can handle read and writes with bytes directly and don’t need to rely on bit operations for extracting individual bits.<br>The benchmark (<a href="https://gist.github.com/jakobkogler/e6359ea9ced24fe304f1a8af3c9bee0e" target="_blank" rel="noopener">link</a>) shows, that using a <code>vector&lt;char&gt;</code> is about 3x faster in this situation than using a <code>vector&lt;bool&gt;</code>.<br>A word of caution: those numbers might differ depending on architecture, compiler, and optimization levels.</p>
+<p>Here we have an implementation that counts the number of primes smaller than or equal to $n$ using block sieving.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_primes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> S = <span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; primes;</span><br><span class="line">    <span class="keyword">int</span> nsqrt = <span class="built_in">sqrt</span>(n);</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">is_prime</span><span class="params">(nsqrt + <span class="number">2</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= nsqrt; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (is_prime[i]) &#123;</span><br><span class="line">            primes.push_back(i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt;= nsqrt; j += i)</span><br><span class="line">                is_prime[j] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">block</span><span class="params">(S)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k * S &lt;= n; k++) &#123;</span><br><span class="line">        fill(block.begin(), block.end(), <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">int</span> start = k * S;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> p : primes) &#123;</span><br><span class="line">            <span class="keyword">int</span> start_idx = (start + p - <span class="number">1</span>) / p;</span><br><span class="line">            <span class="keyword">int</span> j = max(start_idx, p) * p - start;</span><br><span class="line">            <span class="keyword">for</span> (; j &lt; S; j += p)</span><br><span class="line">                block[j] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">0</span>)</span><br><span class="line">            block[<span class="number">0</span>] = block[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S &amp;&amp; start + i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (block[i])</span><br><span class="line">                result++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The running time of block sieving is the same as for regular sieve of Eratosthenes (unless the size of the blocks is very small), but the needed memory will shorten to $O(\sqrt{n} + S)$ and we have better caching results.<br>On the other hand, there will be a division for each pair of a block and prime number from $[1; \sqrt{n}]$, and that will be far worse for smaller block sizes.<br>Hence, it is necessary to keep balance when selecting the constant $S$.<br>We achieved the best results for block sizes between $10^4$ and $10^5$.</p>
+<h2 id="특정-범위에서-소수들-찾기"><a href="#특정-범위에서-소수들-찾기" class="headerlink" title="특정 범위에서 소수들 찾기"></a>특정 범위에서 소수들 찾기</h2><p>때때로 $R$이 매우 크지만 (예를 들어 $1e12$), 범위가 작은 구간 $[L,R]$ (예를 들어 $R - L + 1 \approx 1e7$)에 대하여 범위의 모든 소수를 구할 필요가 있을 수 있다.</p>
+<p>이러한 문제를 해결하기 위하여, we can use the idea of the Segmented sieve.<br>We pre-generate all prime numbers up to $\sqrt R$, and use those primes to mark all composite numbers in the segment $[L, R]$.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">segmentedSieve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> L, <span class="keyword">long</span> <span class="keyword">long</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// generate all primes up to sqrt(R)</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> lim = <span class="built_in">sqrt</span>(R);</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">mark</span><span class="params">(lim + <span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; primes;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">2</span>; i &lt;= lim; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!mark[i]) &#123;</span><br><span class="line">            primes.emplace_back(i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> j = i * i; j &lt;= lim; j += i)</span><br><span class="line">                mark[j] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">isPrime</span><span class="params">(R - L + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i : primes)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> j = max(i * i, (L + i - <span class="number">1</span>) / i * i); j &lt;= R; j += i)</span><br><span class="line">            isPrime[j - L] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (L == <span class="number">1</span>)</span><br><span class="line">        isPrime[<span class="number">0</span>] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> isPrime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이 접근의 시간 복잡도는 $O((R - L + 1) \log \log (R) + \sqrt R \log \log \sqrt R)$ 이다.</p>
+<p>It’s also possible that we don’t pre-generate all prime numbers:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">segmentedSieveNoPreGen</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> L, <span class="keyword">long</span> <span class="keyword">long</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; <span class="title">isPrime</span><span class="params">(R - L + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> lim = <span class="built_in">sqrt</span>(R);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">2</span>; i &lt;= lim; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> j = max(i * i, (L + i - <span class="number">1</span>) / i * i); j &lt;= R; j += i)</span><br><span class="line">            isPrime[j - L] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (L == <span class="number">1</span>)</span><br><span class="line">        isPrime[<span class="number">0</span>] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> isPrime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>자명하게도 시간 복잡도는 더 올라간다 ($O((R - L + 1) \log (R) + \sqrt R)$). 그러나 실제로는 아주 빠르게 수행된다.</p>
+<h2 id="선형-수행시간을-가지는-변형-알고리즘"><a href="#선형-수행시간을-가지는-변형-알고리즘" class="headerlink" title="선형 수행시간을 가지는 변형 알고리즘"></a>선형 수행시간을 가지는 변형 알고리즘</h2><p>이 알고리즘을 선형 시간 복잡도를 가지게 변형할 수 있다. 이 접근은 <a href="./prime-sieve-linear.html">Linear Sieve</a> 아티클에 소개되어 있다. 그러나 해당 알고리즘 또한 자체적인 단점을 지니고 있다.</p>
+<h2 id="연습문제"><a href="#연습문제" class="headerlink" title="연습문제"></a>연습문제</h2><ul>
+<li><a href="http://www.spoj.com/problems/TDPRIMES/" target="_blank" rel="noopener">SPOJ - Printing Some Primes</a></li>
+<li><a href="http://www.spoj.com/problems/HS08PAUL/" target="_blank" rel="noopener">SPOJ - A Conjecture of Paul Erdos</a></li>
+<li><a href="http://www.spoj.com/problems/VECTAR8/" target="_blank" rel="noopener">SPOJ - Primal Fear</a></li>
+<li><a href="http://www.spoj.com/problems/PTRI/" target="_blank" rel="noopener">SPOJ - Primes Triangle (I)</a></li>
+<li><a href="http://codeforces.com/contest/26/problem/A" target="_blank" rel="noopener">Codeforces - Almost Prime</a></li>
+<li><a href="http://codeforces.com/contest/776/problem/B" target="_blank" rel="noopener">Codeforces - Sherlock And His Girlfriend</a></li>
+<li><a href="http://www.spoj.com/problems/NGIRL/" target="_blank" rel="noopener">SPOJ - Namit in Trouble</a></li>
+<li><a href="http://www.spoj.com/problems/DCEPC505/" target="_blank" rel="noopener">SPOJ - Bazinga!</a></li>
+<li><a href="https://www.hackerrank.com/contests/projecteuler/challenges/euler134" target="_blank" rel="noopener">Project Euler - Prime pair connection</a></li>
+<li><a href="http://www.spoj.com/problems/NFACTOR/" target="_blank" rel="noopener">SPOJ - N-Factorful</a></li>
+<li><a href="http://www.spoj.com/problems/BSPRIME/" target="_blank" rel="noopener">SPOJ - Binary Sequence of Prime Numbers</a></li>
+<li><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2338" target="_blank" rel="noopener">UVA 11353 - A Different Kind of Sorting</a></li>
+<li><a href="http://www.spoj.com/problems/PRIME1/" target="_blank" rel="noopener">SPOJ - Prime Generator</a></li>
+<li><a href="http://www.spoj.com/problems/PRIMES2/" target="_blank" rel="noopener">SPOJ - Printing some primes (hard)</a></li>
+<li><a href="https://codeforces.com/problemset/problem/17/A" target="_blank" rel="noopener">Codeforces - Nodbach Problem</a></li>
+<li><a href="https://codeforces.com/problemset/problem/154/B" target="_blank" rel="noopener">Codefoces - Colliders</a></li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/e-maxx-kor/">E-MAXX-KOR</a></li>
+            <li><a href="/e-maxx-kor/algebra/">ALGEBRA</a></li>
+            <li>SIEVE-OF-ERATOSTHENES</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#에라토스테네스의-체"><span class="nav-number">1.</span> <span class="nav-text">에라토스테네스의 체</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#구현"><span class="nav-number">1.1.</span> <span class="nav-text">구현</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#점근적-분석"><span class="nav-number">1.2.</span> <span class="nav-text">점근적 분석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#에라토스테네스의-체의-여러-최적화-기법"><span class="nav-number">1.3.</span> <span class="nav-text">에라토스테네스의 체의 여러 최적화 기법</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#제곱근까지만-거르기"><span class="nav-number">1.3.1.</span> <span class="nav-text">제곱근까지만 거르기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#홀수만-거르기"><span class="nav-number">1.3.2.</span> <span class="nav-text">홀수만 거르기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#메모리-소비와-연산의-속도"><span class="nav-number">1.3.3.</span> <span class="nav-text">메모리 소비와 연산의 속도</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segmented-Sieve"><span class="nav-number">1.3.4.</span> <span class="nav-text">Segmented Sieve</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#특정-범위에서-소수들-찾기"><span class="nav-number">1.4.</span> <span class="nav-text">특정 범위에서 소수들 찾기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#선형-수행시간을-가지는-변형-알고리즘"><span class="nav-number">1.5.</span> <span class="nav-text">선형 수행시간을 가지는 변형 알고리즘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#연습문제"><span class="nav-number">1.6.</span> <span class="nav-text">연습문제</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Dohyun Kwon</p>
+  <div class="site-description" itemprop="description">Computer Science / Problem Solving / Competitive Programming</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SylvesterKwon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SylvesterKwon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:asix71@gmail.com" title="E-Mail → mailto:asix71@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/ASIX_KWON" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;ASIX_KWON" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dohyun Kwon</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
