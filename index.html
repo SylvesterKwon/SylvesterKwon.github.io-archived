@@ -162,6 +162,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/Codeforces%20Round%20#%20766%20(Div.%202)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dohyun Kwon">
+      <meta itemprop="description" content="Computer Science / Problem Solving / Competitive Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ASIX' AXIS">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Codeforces%20Round%20#%20766%20(Div.%202)/" class="post-title-link" itemprop="url">Codeforces Round 766 (Div. 2)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2022-01-25 14:00:00 / Updated at: 15:24:20" itemprop="dateCreated datePublished" datetime="2022-01-25T14:00:00+09:00">2022-01-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="A-Not-Shading"><a href="#A-Not-Shading" class="headerlink" title="A. Not Shading"></a><a href="https://codeforces.com/contest/1627/problem/A" target="_blank" rel="noopener">A. Not Shading</a></h2><p>가장 많은 operation을 수행해야 하는 경우도 2번이면 충분하다는 성질만 관찰하면 된다. 자연스럽게 다음과 같은 케이스분류를 할 수 있다:</p>
+<ul>
+<li><code>-1</code> 을 출력해야 하는 경우: 불가능한 경우는 색이 칠해져있는 칸이 없는 경우</li>
+<li><code>0</code> 을 출력해야 하는 경우: 색을 칠하고자 하는 칸이 이미 색칠되어 있는 경우</li>
+<li><code>1</code> 을 출력해야 하는 경우: 색을 칠하고자 하는 칸을 제외하고, 해당 칸의 각 행과 열중 아무 칸이나 이미 색칠되어 있는 경우</li>
+<li><code>2</code> 를 출력해야 하는 경우: 그외 나머지 모든 경우</li>
+</ul>
+<h2 id="B-Not-Sitting"><a href="#B-Not-Sitting" class="headerlink" title="B. Not Sitting"></a><a href="https://codeforces.com/contest/1627/problem/B" target="_blank" rel="noopener">B. Not Sitting</a></h2><p>먼저 수를 두는 Tina는 최선의 수를 두었을 때, 무조건 주어진 영역중 모서리에 자리할 수 있고, 해야만 한다. 모서리에 에 자신의 자리를 두고 핑크색 의자로 자신을 가두어야 의자를 효율적으로 사용할 수 있다. 나중에 수를 두는 Rahul은 Tina가 무조건 모서리에 자리한다는 것을 알기 때문에 어떤 칸에 자리하고자 할때, 각 모서리까지의 <a href="https://ko.wikipedia.org/wiki/%EB%A7%A8%ED%95%B4%ED%8A%BC_%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener">맨해튼 거리</a>의 최대거리를 최소화 하는 방향으로 자리할 것이다. 그러면 각 칸마다 Rahul이 위치했다고 가정했을 때, 모서리중 해당 칸과 가장 거리가 먼 칸의 위치를 저장한다. 이는 BFS등을 이용하면 $O(NM)$에 계산 가능하다. 그리고 각 칸에 저장되어 있는 거리 값을 배열에 넣고, 오름차순으로 정렬한 후 출력하면 된다. 따라서 총 시간복잡도는 $O(NM log NM)$이 된다. 이해가 어려울 수도 있는데, Tina가 핑크색 의자를 모서리에 가까운 칸부터 우선적으로 (그리고 대칭적으로) 채워나간다고 생각해보면 편하다.</p>
+<h2 id="C-Not-Assigning"><a href="#C-Not-Assigning" class="headerlink" title="C. Not Assigning"></a><a href="https://codeforces.com/contest/1627/problem/C" target="_blank" rel="noopener">C. Not Assigning</a></h2><p>한 간선이나 연속된 두 간선의 가중합이 모두 소수여야 하는데, 해당 조건을 보고 다음과 같은 성질을 관찰할 수 있다:</p>
+<ul>
+<li>가중치가 소수인 두 간선의 가중합이 짝수인 소수인 경우는 없다. 그러므로 두 연속된 간선의 가중합은 무조건 홀수인 소수가 되어야 한다.</li>
+<li>가중치가 소수인 두 간선의 가중합이 홀수인 소수인 경우는 한 간선의 가중치가 짝수, 다른 간선의 가중치가 홀수인 경우가 되어야 한다.</li>
+</ul>
+<p>그런데 어떤 한 정점에 대하여 연결되어 있는 다른 정점이 3개 이상이라고 생각해보면, 모든 연속된 두 간선의 가중합이 소수가 되어야 한다는 조건을 지킬 수 없게 된다. 따라서 주어진 트리가 선형이 아니라면 <code>-1</code>을 출력해야 하는 유일한 상황이라고 말할 수 있다. 주어진 트리가 선형이라면 트리의 끝부터 끝까지 간선에 $2, 3, 2, 3, …$ 과 같은 식으로 가중치를 달아주면 된다. 숫자 3이 마음에 들지 않는다면, 2와의 합이 여전히 소수인 소수중 아무 숫자를 골라서 사용하면 된다.</p>
+<h2 id="D-Not-Adding"><a href="#D-Not-Adding" class="headerlink" title="D. Not Adding"></a><a href="https://codeforces.com/contest/1627/problem/D" target="_blank" rel="noopener">D. Not Adding</a></h2><p>이 문제의 풀이는 연산을 통해 새롭게 수열에 추가되는 수는 절대 기존 배열 $a$의 원소의 최댓값 ($A$라고 하자) 을 넘지 않는다는 성질, 그리고 배열에 원소를 추가하는 연산의 순서에 상관없이 항상 최적해에 도달할 수 있다는 성질을 관찰하면서 부터 시작된다. 배열에 원소를 추가하는 연산은 상대적으로 “큰” 어떤 두 수 $a_i, a_j$ 에 대한 상대적으로 “작은” $gcd(a_i, a_j)$ 를 통해 이루어 지는데 ($gcd(a_i, a_j) \leq min(a_i, a_j)$), 따라서 $A$ 부터 $1$ 까지 역순으로 수를 순회하면서 이 수가 배열에 추가될 수 있는지 단 한번의 순회로 확인할 수 있다.</p>
+<p>어떤 수 $a_i$에 대하여 배열에 새로 추가될 수 있는 수 인지에 대한 결정문제를 해결해보자. 이 문제는 현재 배열내에 존재하는 모든 $a_i$ 의 배수들의 GCD 값이 $a_i$인지 확인하면 된다. 유클리드 호제법을 사용하면 이 결정문제에 대한 답은 $O(n/i log(n))$ 에 해결할 수 있다. 범위 $[1,n]$ 내에 있는, $a$에 포함되지 않은 모든 수들에 대해 이 결정문제를 해결하면 된다. 시간복잡도의 $n/i$ 항은 <a href="https://ko.wikipedia.org/wiki/%EC%A1%B0%ED%99%94%EC%88%98" target="_blank" rel="noopener">조화수열</a>을 이루고, 합은 조화수 $H_n=1/1+1/2+1/3+…+1/n=sum_{i=1}^{n}1/i$ 이다. <a href="https://jimmy-ai.tistory.com/9" target="_blank" rel="noopener">조화수는 로그스케일로 근사</a>할 수 있으므로, 총 시간복잡도를 다시 계산하면 $O(H_n log n) = O(n log^2 n)$이고, 이는 문제 해결에 충분히 짧은 시간복잡도이다.</p>
+<h2 id="총평"><a href="#총평" class="headerlink" title="총평"></a>총평</h2><p>아주 오랫만에 참여한 Virtual contest이다. A, B, C 까지는 제한시간안에 해결하였으나, D번은 제한시간이 끝나고 추가적으로 고민하여 해결하였다. 재밌는 문제들로 이루어진 좋은 set이라고 생각하는데, B번이 Div2 B답지 않게 조금 어려워 당황했다 ^^. </p>
+<ul>
+<li>E, F번 문제에 대한 풀이는 문제를 해결하게 된다면 추가 예정 *</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/ps-220108/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,10 +263,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2022-01-08 13:59:30 / Updated at: 14:15:08" itemprop="dateCreated datePublished" datetime="2022-01-08T13:59:30+09:00">2022-01-08</time>
+              <time title="Post created: 2022-01-08 13:59:30" itemprop="dateCreated datePublished" datetime="2022-01-08T13:59:30+09:00">2022-01-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2022-01-16 15:26:17" itemprop="dateModified" datetime="2022-01-16T15:26:17+09:00">2022-01-16</time>
+              </span>
 
           
 
@@ -202,7 +286,7 @@
 
       
           <p>SOLVED.AC 의 CLASS 7에 분류되어 있는 문제들 중 안푼 문제들을 조금 풀어보았다.</p>
-<h2 id="같은-탑-BOJ-1126"><a href="#같은-탑-BOJ-1126" class="headerlink" title="같은 탑 (BOJ#1126)"></a><a href="https://www.acmicpc.net/problem/1126" target="_blank" rel="noopener">같은 탑 (BOJ#1126)</a></h2><p>두 개의 탑을 쌓는데, 각 탑에 최소 블록 1개는 사용하면서 탑의 높이를 같게 만드는 경우 중, 가장 높게 만들 수 있는 경우의 높이를 구해야 한다. $N leq 50$ 라는 제한에 주목해보자, 이 제한은 충분히 작기 때문에 이 문제를 DP로 해결할 수 있다는 희망을 준다. </p>
+<h2 id="같은-탑-BOJ-1126"><a href="#같은-탑-BOJ-1126" class="headerlink" title="같은 탑 (BOJ#1126)"></a><a href="https://www.acmicpc.net/problem/1126" target="_blank" rel="noopener">같은 탑 (BOJ#1126)</a></h2><p>두 개의 탑을 쌓는데, 각 탑에 최소 블록 1개는 사용하면서 탑의 높이를 같게 만드는 경우 중, 가장 높게 만들 수 있는 경우의 높이를 구해야 한다. $N \leq 50$ 라는 제한에 주목해보자, 이 제한은 충분히 작기 때문에 이 문제를 DP로 해결할 수 있다는 희망을 준다. </p>
 <p>결론부터 말하면, 다음과 같이 DP테이블 정의를 내리면 된다: $dp_{i,j}$ 는 $i$ 번째 블록까지 봤을 때, $(첫번째 탑의 높이)-(두번째 탑의 높이) = j$ 일 때, 첫번째 탑의 높이의 최댓값.</p>
 <p>높이 차를 테이블의 인자에 저장하고 테이블의 값으로는 한 탑 (앞선 정의에선 첫번째 탑) 의 높이를 저장했다. 여기서 주의해야 할 점은, $i$ 번째 블록을 사용하지 않는 경우도 잘 고려하여 점화식 구현을 해야 한다는 것이다. 또, 답이 블록을 한번도 포함하지 않은 경우를 포함하지 않게 끔 적절히 구현하여야 한다. 답은 $dp_{N,0}$ 을 출력하면 된다 (탑의 높이 차가 음수가 될 수도 있어 음수인덱스의 접근을 막기 위해 배열칸을 $500,000$ 번 정도 쉬프트해서 사용하면 된다). 최종 시간 복잡도는 $O(N*10^6)$ 인데, 여기서 $10^6$ 은 가능한 모든 높이 차의 영역을 나타낸다. 이는 상수이므로 선형시간안에 문제를 풀었다고 우기고 싶지만… <a href="https://w.namu.la/s/d3084f2c36b80d96f2564a6d2d7cde9e36bf60e957fd978124eabb07b6a48035d5d189e407fb614dae9703d95966da3083955d571039b70d01f9aa6758fea2b05ca78d66cdb830ee470d067d3022dd2dcecc1cf7e6760de93f2675284a1691e3bd8713eacaa0bbe9025f779e31fff7ae" target="_blank" rel="noopener">그러기엔 너무나도 큰 오버헤드였다</a>.</p>
 <p>이 문제를 해결했다면, ICPC 2019 인예 문제인 <a href="https://www.acmicpc.net/problem/17528" target="_blank" rel="noopener">Two Machines (BOJ#17528)</a> 도 비슷하니 한번 풀어보자.</p>
@@ -828,112 +912,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/test-post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dohyun Kwon">
-      <meta itemprop="description" content="Computer Science / Problem Solving / Competitive Programming">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ASIX' AXIS">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/test-post/" class="post-title-link" itemprop="url">테스트 포스트</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 1970-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T00:00:00+09:00">1970-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2021-06-23 19:26:17" itemprop="dateModified" datetime="2021-06-23T19:26:17+09:00">2021-06-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>이 포스트는 테스트용으로 작성되었습니다.</p>
-<h1 id="제목1"><a href="#제목1" class="headerlink" title="제목1"></a>제목1</h1><h2 id="제목2"><a href="#제목2" class="headerlink" title="제목2"></a>제목2</h2><h3 id="제목3"><a href="#제목3" class="headerlink" title="제목3"></a>제목3</h3><h4 id="제목4"><a href="#제목4" class="headerlink" title="제목4"></a>제목4</h4><h5 id="제목5"><a href="#제목5" class="headerlink" title="제목5"></a>제목5</h5><h6 id="제목6"><a href="#제목6" class="headerlink" title="제목6"></a>제목6</h6><ol>
-<li>목록1<ul>
-<li>서브목록1</li>
-<li>서브목록2</li>
-</ul>
-</li>
-<li>목록2<ul>
-<li>서브목록1</li>
-<li>서브목록2</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>순서없는목록<ul>
-<li>작은순서없는목록</li>
-</ul>
-</li>
-</ul>
-<p><em>EXCELSIOR! 이텔릭체는 별표!</em><br><strong>볼드체는 별표 두개!</strong><br><del>취소선은 물결표시로!</del><br><u>밑줄은 u태그로!</u><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"Hello world!\n"</span>;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>인용1</p>
-<blockquote>
-<p>인용2</p>
-</blockquote>
-</blockquote>
-<script type="math/tex; mode=display">x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}</script><p>$ x = \frac{-b \pm \sqrt{b^2-4ac}}{2a} $</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
- 1 & a_1 & a_1^2 & \cdots & a_1^n \\
- 1 & a_2 & a_2^2 & \cdots & a_2^n \\
- \vdots  & \vdots& \vdots & \ddots & \vdots \\
- 1 & a_m & a_m^2 & \cdots & a_m^n    
- \end{pmatrix}</script><script type="math/tex; mode=display">\begin{align*} 
-a & = b q_1 + r_1 \\
-b & = r_1 q_2 + r_2 \\ 
-& \vdots \\
-r_{n - 1} & = r_n q_n + r_{n + 1} \\
-r_{n + 1} & = 0 
-\end{align*}</script><p>hexo framework는 죄가 없다. - 6/23/2021</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+  </nav>
 
 
 
@@ -997,12 +980,12 @@ r_{n + 1} & = 0
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
