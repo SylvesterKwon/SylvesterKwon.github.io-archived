@@ -28,7 +28,7 @@
 <meta property="og:description" content="A. Not Shading가장 많은 operation을 수행해야 하는 경우도 2번이면 충분하다는 성질만 관찰하면 된다. 자연스럽게 다음과 같은 케이스분류를 할 수 있다:  -1 을 출력해야 하는 경우: 불가능한 경우는 색이 칠해져있는 칸이 없는 경우 0 을 출력해야 하는 경우: 색을 칠하고자 하는 칸이 이미 색칠되어 있는 경우 1 을 출력해야 하는 경우:">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2022-01-25T05:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-25T06:54:47.548Z">
+<meta property="article:modified_time" content="2022-01-25T07:04:04.961Z">
 <meta property="article:author" content="Dohyun Kwon">
 <meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2022-01-25 14:00:00 / Updated at: 15:54:47" itemprop="dateCreated datePublished" datetime="2022-01-25T14:00:00+09:00">2022-01-25</time>
+              <time title="Post created: 2022-01-25 14:00:00 / Updated at: 16:04:04" itemprop="dateCreated datePublished" datetime="2022-01-25T14:00:00+09:00">2022-01-25</time>
             </span>
 
           
@@ -222,6 +222,11 @@
 <p>어떤 수 $a_i$에 대하여 배열에 새로 추가될 수 있는 수 인지에 대한 결정문제를 해결해보자. 이 문제는 현재 배열내에 존재하는 모든 $a_i$ 의 배수들의 GCD 값이 $a_i$인지 확인하면 된다. 유클리드 호제법을 사용하면 이 결정문제에 대한 답은 $O(A/i log(A))$ 에 해결할 수 있다. 범위 $[1,n]$ 내에 있는, $a$에 포함되지 않은 모든 수들에 대해 이 결정문제를 해결하면 된다. 시간복잡도의 $A/i$ 항은 <a href="https://ko.wikipedia.org/wiki/%EC%A1%B0%ED%99%94%EC%88%98" target="_blank" rel="noopener">조화수열</a>을 이루고, 합은 조화수 $H_A=1/1+1/2+1/3+…+1/A=\sum_{i=1}^{A}1/i$ 이다. <a href="https://jimmy-ai.tistory.com/9" target="_blank" rel="noopener">조화수는 로그스케일로 근사</a>할 수 있으므로, 총 시간복잡도를 다시 계산하면 $O(n+A (log A)^2)$이고, 이는 문제 해결에 충분히 짧은 시간복잡도이다.</p>
 <p>수정 : 유클리드 호제법의 최악의 경우에도 $O(log A)$ 번의 단계만 거치기 때문에, 사실상 시간복잡도는 $O(n+A log A)$ 라고 볼 수 있다. 이미 GCD가 $a_i$ 인 경우에는 $O(1)$ 만에 GCD를 구할 수 있기 때문에, 대부분의 GCD 연산은 “생각보다” 훨씬 빨리 동작할 것이다. <a href="https://codeforces.com/blog/entry/99067?#comment-878266" target="_blank" rel="noopener">Editorial 댓글</a> 을 참고하여 알게 되었다.</p>
 <h2 id="총평"><a href="#총평" class="headerlink" title="총평"></a>총평</h2><p>아주 오랫만에 참여한 Virtual contest이다. A, B, C 까지는 제한시간안에 해결하였으나, D번은 제한시간이 끝나고 추가적으로 고민하여 해결하였다. 재밌는 문제들로 이루어진 좋은 set이라고 생각하는데, B번이 Div2 B답지 않게 조금 어려워 당황했다 ^^.</p>
+<p>사실 D번 풀이의 시간복잡도가 내가 계산한 것보다 $O(log A) 만큼 작아서, 처음에 이해가 안가서 이런말을 했다:</p>
+<blockquote>
+<p>GCD는 조상님이 구해주시나?? - 권도현</p>
+</blockquote>
+<p>이제는 이해했지만, <a href="https://namu.wiki/w/%EC%95%84%EB%8A%94%20%EB%A7%8C%ED%81%BC%20%EB%B3%B4%EC%9D%B8%EB%8B%A4?from=%EC%95%84%EB%A7%8C%EB%B3%B4" target="_blank" rel="noopener">아는만큼 보인다</a>고… 재밌는 경험이였다.</p>
 <ul>
 <li>E, F번 문제에 대한 풀이는 문제를 해결하게 된다면 추가 예정</li>
 </ul>
