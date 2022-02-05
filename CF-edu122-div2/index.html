@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;vector&lt;P&gt; p">
+  <meta name="description" content="A. Div. 7주어진 수의 한 자리수만 바꿔서 7의 배수가 되도록 하는 문제이다. 일의 자리를 조작한다면 항상 답이 존재함은 쉽게 보일 수 있다. 일의 자리 10가지를 완전탐색하면 문제를 해결할 수 있으나, 주어진 수가 이미 7의 배수라면 그대로 출력해야함을 주의해야한다. B. Minority2가지 경우로 나누어서 생각해볼 수 있다.  0의 개수와 1의">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Convex Hull 구현">
-<meta property="og:url" content="https://sylvesterkwon.github.io/Convex-hull/index.html">
+<meta property="og:title" content="Educational Codeforces Round 122 (Div. 2)">
+<meta property="og:url" content="https://sylvesterkwon.github.io/CF-edu122-div2/index.html">
 <meta property="og:site_name" content="ASIX&#39; AXIS">
-<meta property="og:description" content="전처리 1234typedef long long ll;typedef complex&lt;ll&gt; P;#define X real()#define Y imag() 위껍질 아래껍질 분할 (x축 우선정렬) 123456789101112131415161718192021222324252627282930int n; cin&gt;&gt;n;vector&lt;P&gt; p">
+<meta property="og:description" content="A. Div. 7주어진 수의 한 자리수만 바꿔서 7의 배수가 되도록 하는 문제이다. 일의 자리를 조작한다면 항상 답이 존재함은 쉽게 보일 수 있다. 일의 자리 10가지를 완전탐색하면 문제를 해결할 수 있으나, 주어진 수가 이미 7의 배수라면 그대로 출력해야함을 주의해야한다. B. Minority2가지 경우로 나누어서 생각해볼 수 있다.  0의 개수와 1의">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2021-03-30T05:21:00.000Z">
-<meta property="article:modified_time" content="2021-03-30T05:22:45.932Z">
+<meta property="article:published_time" content="2022-02-05T08:56:00.000Z">
+<meta property="article:modified_time" content="2022-02-05T10:16:49.511Z">
 <meta property="article:author" content="Dohyun Kwon">
-<meta property="article:tag" content="PS">
+<meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://sylvesterkwon.github.io/Convex-hull/">
+<link rel="canonical" href="https://sylvesterkwon.github.io/CF-edu122-div2/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Convex Hull 구현 | ASIX' AXIS</title>
+  <title>Educational Codeforces Round 122 (Div. 2) | ASIX' AXIS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
     <script>
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/Convex-hull/">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/CF-edu122-div2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Convex Hull 구현
+          Educational Codeforces Round 122 (Div. 2)
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2021-03-30 14:21:00 / Updated at: 14:22:45" itemprop="dateCreated datePublished" datetime="2021-03-30T14:21:00+09:00">2021-03-30</time>
+              <time title="Post created: 2022-02-05 17:56:00 / Updated at: 19:16:49" itemprop="dateCreated datePublished" datetime="2022-02-05T17:56:00+09:00">2022-02-05</time>
             </span>
 
           
@@ -204,14 +204,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>전처리</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">complex</span>&lt;ll&gt; P;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> X real()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Y imag()</span></span><br></pre></td></tr></table></figure>
-<p>위껍질 아래껍질 분할 (x축 우선정렬)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n; <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; pt;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">	ll x,y; <span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">	pt.push_back(&#123;x,y&#125;);</span><br><span class="line">&#125;</span><br><span class="line">sort(pt.begin(),pt.end(),[](<span class="keyword">const</span> P&amp; a, <span class="keyword">const</span> P&amp; b)&#123;</span><br><span class="line">	<span class="keyword">return</span> a.X&lt;b.X||(a.X==b.X&amp;&amp;a.Y&lt;b.Y);</span><br><span class="line">&#125;);</span><br><span class="line">P p1=pt[<span class="number">0</span>], p2=pt.back();</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; up, down;</span><br><span class="line">up.push_back(p1); down.push_back(p1);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;pt.size();i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(up.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(up[up.size()<span class="number">-1</span>]-up[up.size()<span class="number">-2</span>])*(pt[i]-up[up.size()<span class="number">-1</span>])).Y&lt;=<span class="number">0</span>)</span><br><span class="line">			up.pop_back();</span><br><span class="line">		up.push_back(pt[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i==pt.size()<span class="number">-1</span>||(conj(pt[i]-p1)*(p2-pt[i])).Y&lt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(down.size()&gt;=<span class="number">2</span>&amp;&amp;(conj(down[down.size()<span class="number">-1</span>]-down[down.size()<span class="number">-2</span>])*(pt[i]-down[down.size()<span class="number">-1</span>])).Y&gt;=<span class="number">0</span>)</span><br><span class="line">			down.pop_back();</span><br><span class="line">		down.push_back(pt[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;P&gt; result;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;up.size();i++)</span><br><span class="line">	result.push_back(up[i]);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=down.size()<span class="number">-2</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">	result.push_back(down[i]);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;result.size()&lt;&lt;<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="Rotating-Calipers"><a href="#Rotating-Calipers" class="headerlink" title="Rotating Calipers"></a>Rotating Calipers</h2><p>Convex Hull을 구하고 $O(N)$만에 거리가 가장 먼 점을 찾는 기법</p>
-<p>주의: Convex hull이 시계방향으로 정렬되어있어야 사용할 수 있음, 반시계방향으로 정렬 되어 있다면 4행의 while문의 cw함수 호출을 ccw로 고칠 것</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// distance function</span></span><br><span class="line"><span class="function">ll <span class="title">dis</span><span class="params">(P a, P b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (a.X-b.X)*(a.X-b.X)+(a.Y-b.Y)*(a.Y-b.Y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;P,P&gt; ans; ll mxdis=<span class="number">0</span>;</span><br><span class="line">ll j=<span class="number">1</span>; <span class="keyword">int</span> chs=ch.size();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;chs;i++)&#123;</span><br><span class="line">	<span class="keyword">while</span>(cw(ch[i],ch[(i+<span class="number">1</span>)%chs],ch[(i+<span class="number">1</span>)%chs]+(ch[(j+<span class="number">1</span>)%chs]-ch[j%chs])))&#123;</span><br><span class="line">		<span class="keyword">if</span>(mxdis&lt;dis(ch[i],ch[j%chs]))&#123;</span><br><span class="line">			mxdis=dis(ch[i],ch[j%chs]);</span><br><span class="line">			ans=&#123;ch[i],ch[j%chs]&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">		j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(mxdis&lt;dis(ch[i],ch[j%chs]))&#123;</span><br><span class="line">		mxdis=dis(ch[i],ch[j%chs]);</span><br><span class="line">		ans=&#123;ch[i],ch[j%chs]&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="A-Div-7"><a href="#A-Div-7" class="headerlink" title="A. Div. 7"></a><a href="https://codeforces.com/contest/1633/problem/A" target="_blank" rel="noopener">A. Div. 7</a></h2><p>주어진 수의 한 자리수만 바꿔서 7의 배수가 되도록 하는 문제이다. 일의 자리를 조작한다면 항상 답이 존재함은 쉽게 보일 수 있다. 일의 자리 10가지를 완전탐색하면 문제를 해결할 수 있으나, 주어진 수가 이미 7의 배수라면 그대로 출력해야함을 주의해야한다.</p>
+<h2 id="B-Minority"><a href="#B-Minority" class="headerlink" title="B. Minority"></a><a href="https://codeforces.com/contest/1633/problem/B" target="_blank" rel="noopener">B. Minority</a></h2><p>2가지 경우로 나누어서 생각해볼 수 있다.</p>
+<ul>
+<li>0의 개수와 1의 개수가 다른 경우: 전체구간을 선택하여 더 적은 수를 모두 지우는게 최선</li>
+<li>0의 개수와 1의 개수가 같은 경우: 전체구간에서 아무 방향을 잡고, 한칸 범위를 줄인 구간을 선택하여 더 적은 수를 모두 지우는게 최선</li>
+</ul>
+<h2 id="C-Kill-the-Monster"><a href="#C-Kill-the-Monster" class="headerlink" title="C. Kill the Monster"></a><a href="https://codeforces.com/contest/1633/problem/C" target="_blank" rel="noopener">C. Kill the Monster</a></h2><p>캐릭터와 몬스터가 각각 “버틸 수 있는 턴” 수를 계산하자. 캐릭터가 선공을 하므로, $(캐릭터가 버틸 수 있는 턴) \geq (몬스터가 버틸 수 있는 턴)$ 이 성립한다면 <code>YES</code>, 그 반대의 경우에는 <code>NO</code> 를 출력하면 된다. 식을 구체화 한다면 다음과 같다:</p>
+<script type="math/tex; mode=display">\lceil {(h_C+a*x)/d_M} \rceil \geq \left \lceil{h_M/(d_C+w(k-x))} \right \rceil</script><p>(위 식에서 $x$ 는 armor upgrade에 사용된 동전의 갯수)</p>
+<h2 id="D-Make-Them-Equal"><a href="#D-Make-Them-Equal" class="headerlink" title="D. Make Them Equal"></a><a href="https://codeforces.com/contest/1633/problem/D" target="_blank" rel="noopener">D. Make Them Equal</a></h2><p>우선 각 $i$ 마다 $a_i=b_i$ 를 만들기 위한 비용을 $w_i$ 라고 계산한다. 이는 1차원 DP로 $O(n^2)$ 에 전처리할 수 있다. $dpw_i$ 가 수열에 있는 초기 수 $1$ 을 $i$ 로 만드는데 사용되는 최소 연산 횟수라고 하자, $1 \leq i \leq 1000, 1 \leq j \leq i$ 를 만족하는 모든 $i, j$에 대하여 다음을 수행하면 된다:</p>
+<script type="math/tex; mode=display">dpw_{i+\lfloor(i/j)\rfloor}=\min(dpw_{i+\lfloor(i/j)\rfloor}, dpw_i+1)</script><p>이젠 문제가 무게가 $w$ 이고 가치가 $c$인 냅색문제로 축소되어 $O(nk)$에 해결할 수 있는데, 그러기엔 $k$ 가 다소 커보인다. 여기서 한가지 관찰할 수 있는 재밌는 점은, $b$ 의 범위가 $1000$ 이하이기 때문에 모든 $b_i$에 대해서 $dpw_{b_i}$ 는 12 이하라는 것을 관찰할 수 있다 (로그스케일이라고도 말할 수 있겠다). 최악의 경우에도 $12*n$ 이상의 연산을 하는 경우가 없기 때문에 사실은 $O(n^2)$ 의 시간복잡도를 가지고, 이는 문제 해결에 충분하다.</p>
+<h2 id="총평"><a href="#총평" class="headerlink" title="총평"></a>총평</h2><p>버추얼로 참가했지만 퍼포먼스 욕심을 내서 문제 안읽고 제출하다가 A, B에서 WA 를, <code>long long</code> 형을 사용하지 않아서 C에서 WA 를 각각 한번씩 받았다. 또한 D번은 DP를 사용하지 않고 그리디하게 부분문제를 해결하는 솔루션을 제출해 3번의 WA 를 받았다. 때문에 오히려 더 좋지 못한 결과를 가져왔는데, 더욱 조심스럽게 제출하는 습관을 가져야할 필요가 있겠다.</p>
+<ul>
+<li>미해결문제에 대한 풀이는 문제를 해결하게 된다면 추가 예정</li>
+</ul>
+
     </div>
 
     
@@ -220,7 +227,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/PS/" rel="tag"># PS</a>
+              <a href="/tags/Codeforces/" rel="tag"># Codeforces</a>
           </div>
 
         
@@ -229,13 +236,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/USACO%202021%20February%20Contest%20(Silver)/" rel="prev" title="USACO 2021 February Contest (Silver)">
-      <i class="fa fa-chevron-left"></i> USACO 2021 February Contest (Silver)
+    <a href="/CF-766-div2/" rel="prev" title="Codeforces Round 766 (Div. 2)">
+      <i class="fa fa-chevron-left"></i> Codeforces Round 766 (Div. 2)
     </a></div>
-      <div class="post-nav-item">
-    <a href="/USACO%202021%20January%20Contest%20(Silver)/" rel="next" title="USACO 2021 January Contest (Silver)">
-      USACO 2021 January Contest (Silver) <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -294,7 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotating-Calipers"><span class="nav-number">1.</span> <span class="nav-text">Rotating Calipers</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Div-7"><span class="nav-number">1.</span> <span class="nav-text">A. Div. 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Minority"><span class="nav-number">2.</span> <span class="nav-text">B. Minority</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Kill-the-Monster"><span class="nav-number">3.</span> <span class="nav-text">C. Kill the Monster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-Make-Them-Equal"><span class="nav-number">4.</span> <span class="nav-text">D. Make Them Equal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#총평"><span class="nav-number">5.</span> <span class="nav-text">총평</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
