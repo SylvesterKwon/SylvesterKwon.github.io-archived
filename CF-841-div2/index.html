@@ -28,7 +28,7 @@
 <meta property="og:description" content="A. Joey Takes Money$1 \leq A, B$ 인 $A, B$ 에 대하여 항상 $A+B \leq A*B$ 가 성립한다는 성질을 이용하여, greedy 하게 수열 $a$ 에서 한개의 수를 제외한 나머지 수들을 모두 1로 만들어 주면 된다. $a_1$ 을 제외한 모든 수를 1로 만든다고 가정해보자. 그렇다면 연산을 마친 수열 $a\prime$ 는">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2022-12-30T05:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-26T05:13:28.086Z">
+<meta property="article:modified_time" content="2023-02-26T05:18:26.561Z">
 <meta property="article:author" content="Dohyun Kwon">
 <meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2023-02-26 14:13:28" itemprop="dateModified" datetime="2023-02-26T14:13:28+09:00">2023-02-26</time>
+                <time title="Updated at: 2023-02-26 14:18:26" itemprop="dateModified" datetime="2023-02-26T14:18:26+09:00">2023-02-26</time>
               </span>
 
           
@@ -222,7 +222,7 @@
 <p>우선 구간합 (prefix sum)과 비슷한 아이디어를 이용하여 구간 XOR (prefix XOR) 를 전처리 $O(N)$, 쿼리당 $O(1)$ 에 가능하게 만든다. 구현은 다음과 같다: $pxor_i$ 을 $\bigoplus_{k=1}^{i} a_k$ 라고 하면 $pxor_i$ 는 $pxor_{i-1} \oplus a_i$ ($i=0$ 일때는 XOR 의 항등원인 $0$)로 순서대로 계산할 수 있다. 구간 XOR 쿼리 $\bigoplus_{k=i}^{j} a_k$ 은 $pxor_j \oplus pxor_{i-1}$ 로 계산할 수 있다. 구간합과 마찬가지로 1-based index 를 사용해야 구현이 편하다.</p>
 <p>이제 구간 XOR 를 한 결과가 완전제곱수인 경우를 세어주어야 한다. 모든 $a_i$ 마다 반복을 하면서 매 반복시마다 $i$ 를 오른쪽 경계로 하는 모든 구간 $[x, i]$ 의 XOR 결과가 완전 제곱수인 경우를 차례대로 “완전제곱수인 경우의 수” 에 더해 나가면 되는데, 구체적인 방법은 다음과 같다: 매 $i$ 번째 iteration 마다 $cnt_k$ 가 구간 $[0, j] (j &lt; i)$ 의 XOR 결과가 k 인 경우의 수인 배열 $cnt$ 를 갱신해나간다. </p>
 <p>구간 XOR 의 최댓값이 될 수 있는 $2*N$ 이하의 모든 완전제곱수 $j^2$ 에 대하여 $pxor_i \oplus pxor_k = j^2$ 를 만족시키는 왼쪽구간 $k$ 의 경우의수를 “완전제곱수인 경우의 수” 에 더해주면 된다. 식을 고쳐쓰면 $pxor_k = pxor_i \oplus j^2$ 이고, 왼쪽 경계가 0 이고 오른쪽 경계가 $i$ 미만인 모든 구간의 XOR 결과가 $pxor_k$ 인 경우의 수는 앞서 언급했던 $cnt_k$ 에 저장되어 있으므로 $cnt_{pxor_i \oplus j^2}$ 를 “완전제곱수인 경우의 수” 에 더해주면 된다.</p>
-<p>따라서 전체 경우의수 $N<em>(N+1)/2$ 에 우리가 구했던 “완전제곱수인 경우의 수” 를 제외하면 답이 된다. 시간복잡도는 $O(N</em>\sqrt{N})$ 인데, 정수 $N$ 보다 작은 완전제곱수의 갯수가 $\sqrt{N}$ 이기 때문이다.</p>
+<p>따라서 전체 경우의수 $N(N+1)/2$ 에 우리가 구했던 “완전제곱수인 경우의 수” 를 제외하면 답이 된다. 시간복잡도는 $O(N\sqrt{N})$ 인데, 정수 $N$ 보다 작은 완전제곱수의 갯수가 $\sqrt{N}$ 이기 때문이다.</p>
 <h2 id="D-Valiant’s-New-Map"><a href="#D-Valiant’s-New-Map" class="headerlink" title="D. Valiant’s New Map"></a><a href="https://codeforces.com/contest/1731/problem/D" target="_blank" rel="noopener">D. Valiant’s New Map</a></h2><p>답 $l$ 으로 이분탐색을 하면 된다. 이분탐색을 진행하는 매 iteration 마다 dp 를 사용하여 $mid$ 가 조건(변의 길이가 $mid$ 인 정사각형 안의 모든 building 의 높이가 최소 $mid$ 인지) 답이 될 수 있는지에 대해 평가할 것이다.</p>
 <p>$dp_{i,j}$ 는 $(i,j)$ 를 우하단 모서리로 하고, 영역내 모든 $a$ 의 높이가 최소 $mid$ 인 정사각형의 변의 최대 길이이다. 점화식은 다음과 같다:</p>
 <script type="math/tex; mode=display">
