@@ -162,6 +162,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/proof-FIT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dohyun Kwon">
+      <meta itemprop="description" content="Computer Science / Problem Solving / Competitive Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ASIX' AXIS">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/proof-FIT/" class="post-title-link" itemprop="url">페르마의 소정리 증명</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-07-28 11:02:48" itemprop="dateCreated datePublished" datetime="2020-07-28T11:02:48+09:00">2020-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-12-01 13:27:47" itemprop="dateModified" datetime="2020-12-01T13:27:47+09:00">2020-12-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p><strong>페르마의 소정리(Fermat’s little Theorem, FlT)</strong>는 정수론의 근간이 되는 매우 중요한 정리입니다. 페르마의 소정리는 다음과 같습니다.</p>
+<blockquote>
+<p>$p$가 소수이고, $gcd(n, p) = 1$ 이면, $n^{p-1} \equiv 1 (mod\;p)$</p>
+</blockquote>
+<p>쉽게 풀어 설명하면 임의의 소수인 p와, p와 서로소인 수 n의 p-1승을 p로 나눈 나머지는 1이라는 뜻입니다.</p>
+<p>PS를 하면서도 상당히 많이 사용하게 되는 정리이므로 증명이 필요하다고 생각 되어, 친구의 도움을 받아 증명을 하게 되었습니다.</p>
+<h2 id="페르마의-소정리-증명"><a href="#페르마의-소정리-증명" class="headerlink" title="페르마의 소정리 증명"></a>페르마의 소정리 증명</h2><p>페르마의 소정리에 나오는 정의에 따라 p를 어떤 소수, a를 p와 서로소인 수로 두겠습니다. $\mathbb {Z}$는 정수집합입니다. 집합 $S=\{n|n \neq 0, n = \mathbb {Z}\,mod\;p\}$ 는 그럼 $p-1$개의 원소를 가지게 됩니다. 집합 $aS=\{n|n \neq 0, n = a ⋅ (\mathbb {Z}\,mod\;p)\}$ 는, 집합 $S$에 있는 모든 원소에 a를 곱한 원소로 이루어져있는 집합으로, 역시 $p-1$개의 원소를 가지게 됩니다.</p>
+<p>집합 aS를 봅시다.</p>
+<script type="math/tex; mode=display">\{a⋅1, a⋅2, ⋯, a⋅(p-1)\}</script><p>이 집합에 $(mod\;p)$ 연산을 해주면 놀랍게도 집합 S와 원소가 일치함을 보일 수 있습니다. p가 소수이고, a와 서로소이기 때문입니다. 따라서 $(mod\;p)$에서 다음과 같습니다.</p>
+<script type="math/tex; mode=display">\{a⋅1, a⋅2, ⋯, a⋅(p-1)\} = \{1, 2, ⋯, (p-1)\}</script><p>그렇다면 집합 S의 원소들을 모두 곱한 값 $(p-1)!$과 집합 aS의 모든 원소들을 곱한 값 $a^{p-1}⋅(p-1)!$은 $(mod\;p)$에서 합동이며 수식으로 표현하면 다음과 같습니다.</p>
+<script type="math/tex; mode=display">a^{p-1}⋅(p-1)! \equiv (p-1)! ⋅ (mod\;p)</script><p>여기서 나머지 연산은 분배법칙이 성립하므로 $(p-1)!$을 소거 하면 다음과 같은 결과를 얻을 수 있습니다.</p>
+<script type="math/tex; mode=display">a^{p-1} \equiv 1 (mod\;p)</script><p>Q.E.D.!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/my-first-codeforces-contest/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -412,7 +488,7 @@ r_{n + 1} & = 0
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -455,7 +531,7 @@ r_{n + 1} & = 0
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

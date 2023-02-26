@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"sylvesterkwon.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="A. Div. 7주어진 수의 한 자리수만 바꿔서 7의 배수가 되도록 하는 문제이다. 일의 자리를 조작한다면 항상 답이 존재함은 쉽게 보일 수 있다. 일의 자리 10가지를 완전탐색하면 문제를 해결할 수 있으나, 주어진 수가 이미 7의 배수라면 그대로 출력해야함을 주의해야한다. B. Minority2가지 경우로 나누어서 생각해볼 수 있다.  0의 개수와 1의">
+  <meta name="description" content="A. Joey Takes Money$1 \leq A, B$ 인 $A, B$ 에 대하여 항상 $A+B \leq A*B$ 가 성립한다는 성질을 이용하여, greedy 하게 수열 $a$ 에서 한개의 수를 제외한 나머지 수들을 모두 1로 만들어 주면 된다. $a_1$ 을 제외한 모든 수를 1로 만든다고 가정해보자. 그렇다면 연산을 마친 수열 $a\prime$ 는">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Educational Codeforces Round 122 (Div. 2)">
-<meta property="og:url" content="https://sylvesterkwon.github.io/CF-edu122-div2/index.html">
+<meta property="og:title" content="Codeforces Round 841 (Div. 2) and Divide by Zero 2022">
+<meta property="og:url" content="https://sylvesterkwon.github.io/CF-841-div2/index.html">
 <meta property="og:site_name" content="ASIX&#39; AXIS">
-<meta property="og:description" content="A. Div. 7주어진 수의 한 자리수만 바꿔서 7의 배수가 되도록 하는 문제이다. 일의 자리를 조작한다면 항상 답이 존재함은 쉽게 보일 수 있다. 일의 자리 10가지를 완전탐색하면 문제를 해결할 수 있으나, 주어진 수가 이미 7의 배수라면 그대로 출력해야함을 주의해야한다. B. Minority2가지 경우로 나누어서 생각해볼 수 있다.  0의 개수와 1의">
+<meta property="og:description" content="A. Joey Takes Money$1 \leq A, B$ 인 $A, B$ 에 대하여 항상 $A+B \leq A*B$ 가 성립한다는 성질을 이용하여, greedy 하게 수열 $a$ 에서 한개의 수를 제외한 나머지 수들을 모두 1로 만들어 주면 된다. $a_1$ 을 제외한 모든 수를 1로 만든다고 가정해보자. 그렇다면 연산을 마친 수열 $a\prime$ 는">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2022-02-05T08:56:00.000Z">
-<meta property="article:modified_time" content="2022-02-05T10:30:29.647Z">
+<meta property="article:published_time" content="2022-12-30T05:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-26T05:13:28.086Z">
 <meta property="article:author" content="Dohyun Kwon">
 <meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://sylvesterkwon.github.io/CF-edu122-div2/">
+<link rel="canonical" href="https://sylvesterkwon.github.io/CF-841-div2/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Educational Codeforces Round 122 (Div. 2) | ASIX' AXIS</title>
+  <title>Codeforces Round 841 (Div. 2) and Divide by Zero 2022 | ASIX' AXIS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169818997-3"></script>
     <script>
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/CF-edu122-div2/">
+    <link itemprop="mainEntityOfPage" href="https://sylvesterkwon.github.io/CF-841-div2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Educational Codeforces Round 122 (Div. 2)
+          Codeforces Round 841 (Div. 2) and Divide by Zero 2022
         </h1>
 
         <div class="post-meta">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2022-02-05 17:56:00 / Updated at: 19:30:29" itemprop="dateCreated datePublished" datetime="2022-02-05T17:56:00+09:00">2022-02-05</time>
+              <time title="Post created: 2022-12-30 14:00:00" itemprop="dateCreated datePublished" datetime="2022-12-30T14:00:00+09:00">2022-12-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2023-02-26 14:13:28" itemprop="dateModified" datetime="2023-02-26T14:13:28+09:00">2023-02-26</time>
+              </span>
 
           
 
@@ -204,19 +210,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="A-Div-7"><a href="#A-Div-7" class="headerlink" title="A. Div. 7"></a><a href="https://codeforces.com/contest/1633/problem/A" target="_blank" rel="noopener">A. Div. 7</a></h2><p>주어진 수의 한 자리수만 바꿔서 7의 배수가 되도록 하는 문제이다. 일의 자리를 조작한다면 항상 답이 존재함은 쉽게 보일 수 있다. 일의 자리 10가지를 완전탐색하면 문제를 해결할 수 있으나, 주어진 수가 이미 7의 배수라면 그대로 출력해야함을 주의해야한다.</p>
-<h2 id="B-Minority"><a href="#B-Minority" class="headerlink" title="B. Minority"></a><a href="https://codeforces.com/contest/1633/problem/B" target="_blank" rel="noopener">B. Minority</a></h2><p>2가지 경우로 나누어서 생각해볼 수 있다.</p>
+        <h2 id="A-Joey-Takes-Money"><a href="#A-Joey-Takes-Money" class="headerlink" title="A. Joey Takes Money"></a><a href="https://codeforces.com/contest/1731/problem/A" target="_blank" rel="noopener">A. Joey Takes Money</a></h2><p>$1 \leq A, B$ 인 $A, B$ 에 대하여 항상 $A+B \leq A*B$ 가 성립한다는 성질을 이용하여, greedy 하게 수열 $a$ 에서 한개의 수를 제외한 나머지 수들을 모두 1로 만들어 주면 된다. $a_1$ 을 제외한 모든 수를 1로 만든다고 가정해보자. 그렇다면 연산을 마친 수열 $a\prime$ 는 다음과 같은 모습일 것이다.</p>
+<script type="math/tex; mode=display">
+\underbrace{
+\prod_{i=1}^n a_i, 1, 1, ..., 1
+}_\text{array of n elements}</script><p>따라서 문제에서 요구하는 대로 연산을 마친 수열의 합 $\Sigma a\prime$ 에 2022를 곱한 값을 출력하면 된다.</p>
+<h2 id="B-Kill-Demodogs"><a href="#B-Kill-Demodogs" class="headerlink" title="B. Kill Demodogs"></a><a href="https://codeforces.com/contest/1731/problem/B" target="_blank" rel="noopener">B. Kill Demodogs</a></h2><p>우선 다음과 같이 지그재그로 움직이는 것이 최적해라는 발상이 필요하다 (가로, 세로 변의 길이합이 같은 직사각형 집합에서 정사각형의 넓이가 가장 넓다는 직관을 사용하였다):</p>
+<script type="math/tex; mode=display">(1,1), (1,2), (2,2), ..., (n-1,n),(n,n)</script><p>위처럼 경로를 지나면서 지나온 칸의 수 (Demodogs 의 수)의 합을 수식으로 나타내면 다음과 같다.</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n} i^2 + \sum_{i=1}^{n-1} i*(i+1)</script><p>따라서 위 식을 연산한 결과에 2022를 곱하면 정답이 된다. 연산 과정에서 필요한 6으로 나누는 연산은 모듈러 역원을 이용하거나 2022가 6의 배수라는 점을 활용하면 된다 ;)</p>
+<h2 id="C-Even-Subarrays"><a href="#C-Even-Subarrays" class="headerlink" title="C. Even Subarrays"></a><a href="https://codeforces.com/contest/1731/problem/C" target="_blank" rel="noopener">C. Even Subarrays</a></h2><p>짝수개의 약수를 가지는 수는 완전제곱수가 아닌 수라는 사실을 상기하자. 전체 경우의 수에서 완전제곱수인 경우를 구하고 제외하는 방식으로 문제를 해결할 것이다.</p>
+<p>우선 구간합 (prefix sum)과 비슷한 아이디어를 이용하여 구간 XOR (prefix XOR) 를 전처리 $O(N)$, 쿼리당 $O(1)$ 에 가능하게 만든다. 구현은 다음과 같다: $pxor_i$ 을 $\bigoplus_{k=1}^{i} a_k$ 라고 하면 $pxor_i$ 는 $pxor_{i-1} \oplus a_i$ ($i=0$ 일때는 XOR 의 항등원인 $0$)로 순서대로 계산할 수 있다. 구간 XOR 쿼리 $\bigoplus_{k=i}^{j} a_k$ 은 $pxor_j \oplus pxor_{i-1}$ 로 계산할 수 있다. 구간합과 마찬가지로 1-based index 를 사용해야 구현이 편하다.</p>
+<p>이제 구간 XOR 를 한 결과가 완전제곱수인 경우를 세어주어야 한다. 모든 $a_i$ 마다 반복을 하면서 매 반복시마다 $i$ 를 오른쪽 경계로 하는 모든 구간 $[x, i]$ 의 XOR 결과가 완전 제곱수인 경우를 차례대로 “완전제곱수인 경우의 수” 에 더해 나가면 되는데, 구체적인 방법은 다음과 같다: 매 $i$ 번째 iteration 마다 $cnt_k$ 가 구간 $[0, j] (j &lt; i)$ 의 XOR 결과가 k 인 경우의 수인 배열 $cnt$ 를 갱신해나간다. </p>
+<p>구간 XOR 의 최댓값이 될 수 있는 $2*N$ 이하의 모든 완전제곱수 $j^2$ 에 대하여 $pxor_i \oplus pxor_k = j^2$ 를 만족시키는 왼쪽구간 $k$ 의 경우의수를 “완전제곱수인 경우의 수” 에 더해주면 된다. 식을 고쳐쓰면 $pxor_k = pxor_i \oplus j^2$ 이고, 왼쪽 경계가 0 이고 오른쪽 경계가 $i$ 미만인 모든 구간의 XOR 결과가 $pxor_k$ 인 경우의 수는 앞서 언급했던 $cnt_k$ 에 저장되어 있으므로 $cnt_{pxor_i \oplus j^2}$ 를 “완전제곱수인 경우의 수” 에 더해주면 된다.</p>
+<p>따라서 전체 경우의수 $N<em>(N+1)/2$ 에 우리가 구했던 “완전제곱수인 경우의 수” 를 제외하면 답이 된다. 시간복잡도는 $O(N</em>\sqrt{N})$ 인데, 정수 $N$ 보다 작은 완전제곱수의 갯수가 $\sqrt{N}$ 이기 때문이다.</p>
+<h2 id="D-Valiant’s-New-Map"><a href="#D-Valiant’s-New-Map" class="headerlink" title="D. Valiant’s New Map"></a><a href="https://codeforces.com/contest/1731/problem/D" target="_blank" rel="noopener">D. Valiant’s New Map</a></h2><p>답 $l$ 으로 이분탐색을 하면 된다. 이분탐색을 진행하는 매 iteration 마다 dp 를 사용하여 $mid$ 가 조건(변의 길이가 $mid$ 인 정사각형 안의 모든 building 의 높이가 최소 $mid$ 인지) 답이 될 수 있는지에 대해 평가할 것이다.</p>
+<p>$dp_{i,j}$ 는 $(i,j)$ 를 우하단 모서리로 하고, 영역내 모든 $a$ 의 높이가 최소 $mid$ 인 정사각형의 변의 최대 길이이다. 점화식은 다음과 같다:</p>
+<script type="math/tex; mode=display">
+dp_{i,j} =
+\begin{cases}
+    min(dp_{i-1,j},dp_{i,j-1},dp_{i-1,j-1})+1, & \text{if }a_{i,j} \geq mid \\
+    0, & \text{otherwise}
+\end{cases}</script><p>$mid \leq dp_{i,j}$ 하나의 $(i,j)$ 라도 존재한다면, $mid$ 는 조건을 만족한다고 할 수 있다. 이분탐색을 계속 진행하여 최소의 $mid$ 값을 찾아내어 출력하면 된다.</p>
+<p>이분탐색 내부의 DP는 <a href="https://www.acmicpc.net/problem/4095" target="_blank" rel="noopener">BOJ#4095</a> 와 유사하니, 비슷한 유형의 문제를 풀어본적이 없다면 한번 해결해보기를 추천한다.</p>
+<h2 id="E-Graph-Cost"><a href="#E-Graph-Cost" class="headerlink" title="E. Graph Cost"></a><a href="https://codeforces.com/contest/1731/problem/E" target="_blank" rel="noopener">E. Graph Cost</a></h2><p>한번에 $k$ 개의 간선을 추가하는데 드는 비용은 $k+1$ 이다. 따라서 문제에서 요구하는 그래프를 최저 비용으로 만들려면 간선을 추가하는 행동의 횟수를 최소화 해야함을 알 수 있다.</p>
+<p>이 문제를 해결하는데 DP 를 포함한 여러가지 방법이 알려져있지만, <a href="https://ko.wikipedia.org/wiki/%EC%98%A4%EC%9D%BC%EB%9F%AC_%ED%94%BC_%ED%95%A8%EC%88%98" target="_blank" rel="noopener">오일러 피 함수(Euler phi function)</a> 를 사용하여 간선의 무게가 $k+1$ 인 간선의 개수, 즉, $gcd(u,v)=k+1$ 를 만족하는 서로 다른 정점 쌍 $(u,v)$ 의 개수는 다음과 같다.</p>
+<script type="math/tex; mode=display">\Sigma_{i=2}^{\lfloor N/(k+1) \rfloor}\phi(i)</script><p>간략히 설명하자면, gcd 가 $k+1$ 인 두 정수 쌍 $(u,v)$은 $(x<em>(k+1),y</em>(k+1))$ (단, $gcd(x,y)=1$) 으로 나타낼 수 있다. 따라서 $v$가 고정일때, $gcd(u,v)=k+1$ 을 만족하는 모든 $u(u&lt;v)$ 의 개수는 $\phi(y)$ 이다. $v$ 값을 고정했을때 경우의 수를 계산했으니, 이제는 가능한 모든 $v$ 값에 대한 $\phi(y)$ 를 더해준 것이 위의 식이다.</p>
+<p>따라서 간선의 무게가 $k+1$ 인 간선의 개수를 알게 되었으니 이를 이용하면 $k$ 개의 간선을 한번에 추가할수 있는 횟수를 알 수 있고, (탐욕적으로) $k$ 를 내림차순으로 순회하면서 가능한 만큼 간선을 추가하면 답을 구할 수 있다.</p>
 <ul>
-<li>0의 개수와 1의 개수가 다른 경우: 전체구간을 선택하여 더 적은 수를 모두 지우는게 최선</li>
-<li>0의 개수와 1의 개수가 같은 경우: 전체구간에서 아무 방향을 잡고, 한칸 범위를 줄인 구간을 선택하여 더 적은 수를 모두 지우는게 최선</li>
+<li>뫼비우스 함수를 이용한 풀이도 가능하다고 한다.</li>
 </ul>
-<h2 id="C-Kill-the-Monster"><a href="#C-Kill-the-Monster" class="headerlink" title="C. Kill the Monster"></a><a href="https://codeforces.com/contest/1633/problem/C" target="_blank" rel="noopener">C. Kill the Monster</a></h2><p>캐릭터와 몬스터가 각각 “버틸 수 있는 턴” 수를 계산하자. 캐릭터가 선공을 하므로, $(캐릭터가 버틸 수 있는 턴) \geq (몬스터가 버틸 수 있는 턴)$ 이 성립한다면 <code>YES</code>, 그 반대의 경우에는 <code>NO</code> 를 출력하면 된다. 식을 구체화 한다면 다음과 같다:</p>
-<script type="math/tex; mode=display">\left \lceil \frac{h_C+ax}{d_M} \right \rceil \geq \left \lceil \frac{h_M}{d_C+w(k-x)} \right \rceil</script><p>(위 식에서 $x$ 는 armor upgrade에 사용된 동전의 갯수)</p>
-<h2 id="D-Make-Them-Equal"><a href="#D-Make-Them-Equal" class="headerlink" title="D. Make Them Equal"></a><a href="https://codeforces.com/contest/1633/problem/D" target="_blank" rel="noopener">D. Make Them Equal</a></h2><p>우선 각 $i$ 마다 $a_i=b_i$ 를 만들기 위한 비용을 $w_i$ 라고 계산한다. 이는 1차원 DP로 $O(n^2)$ 에 전처리할 수 있다. $dpw_i$ 가 수열에 있는 초기 수 $1$ 을 $i$ 로 만드는데 사용되는 최소 연산 횟수라고 하자, $1 \leq i \leq 1000, 1 \leq j \leq i$ 를 만족하는 모든 $i, j$에 대하여 다음을 수행하면 된다:</p>
-<script type="math/tex; mode=display">dpw_{i+\lfloor i/j \rfloor}=\min(dpw_{i+\lfloor i/j \rfloor}, dpw_i+1)</script><p>이젠 문제가 무게가 $w$ 이고 가치가 $c$인 냅색문제로 축소되어 $O(nk)$에 해결할 수 있는데, 그러기엔 $k$ 가 다소 커보인다. 여기서 한가지 관찰할 수 있는 재밌는 점은, $b$ 의 범위가 $1000$ 이하이기 때문에 모든 $b_i$에 대해서 $dpw_{b_i}$ 는 12 이하라는 것을 관찰할 수 있다 (로그스케일이라고도 말할 수 있겠다). 최악의 경우에도 $12n$ 이상의 연산을 하는 경우가 없기 때문에 사실은 $O(n^2)$ 의 시간복잡도를 가지고, 이는 문제 해결에 충분하다.</p>
-<h2 id="총평"><a href="#총평" class="headerlink" title="총평"></a>총평</h2><p>버추얼로 참가했지만 퍼포먼스 욕심을 내서 문제 안읽고 제출하다가 A, B에서 WA 를, <code>long long</code> 형을 사용하지 않아서 C에서 WA 를 각각 한번씩 받았다. 또한 D번은 DP를 사용하지 않고 그리디하게 부분문제를 해결하는 솔루션을 제출해 3번의 WA 를 받았다. 때문에 오히려 더 좋지 못한 결과를 가져왔는데, 더욱 조심스럽게 제출하는 습관을 가져야할 필요가 있겠다.</p>
+<h2 id="총평"><a href="#총평" class="headerlink" title="총평"></a>총평</h2><p>약 1년 반만에 참가한 rated contest 였다. 아예 PS를 멈추진 않고, 새로운 개념을 습득하는 것 대신 스트레스(?) 받지 않는 선에서 AtCoder 문제를 간간히 해결해왔었는데, 이것이 기초체력 향상에 약간 도움이 된것 같다. div2 에서 4솔은 처음인 것 같고, E 번도 대회 도중에 했던 발상이 어느정도 맞는 부분이 있었다는 부분에서 고무적이다.</p>
 <ul>
-<li>미해결문제에 대한 풀이는 문제를 해결하게 된다면 추가 예정</li>
+<li>F번 문제에 대한 풀이는 문제를 해결하게 된다면 추가 예정</li>
 </ul>
 
     </div>
@@ -236,13 +261,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/CF-766-div2/" rel="prev" title="Codeforces Round 766 (Div. 2)">
-      <i class="fa fa-chevron-left"></i> Codeforces Round 766 (Div. 2)
+    <a href="/CF-edu122-div2/" rel="prev" title="Educational Codeforces Round 122 (Div. 2)">
+      <i class="fa fa-chevron-left"></i> Educational Codeforces Round 122 (Div. 2)
     </a></div>
-      <div class="post-nav-item">
-    <a href="/CF-841-div2/" rel="next" title="Codeforces Round 841 (Div. 2) and Divide by Zero 2022">
-      Codeforces Round 841 (Div. 2) and Divide by Zero 2022 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -301,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Div-7"><span class="nav-number">1.</span> <span class="nav-text">A. Div. 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Minority"><span class="nav-number">2.</span> <span class="nav-text">B. Minority</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Kill-the-Monster"><span class="nav-number">3.</span> <span class="nav-text">C. Kill the Monster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-Make-Them-Equal"><span class="nav-number">4.</span> <span class="nav-text">D. Make Them Equal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#총평"><span class="nav-number">5.</span> <span class="nav-text">총평</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Joey-Takes-Money"><span class="nav-number">1.</span> <span class="nav-text">A. Joey Takes Money</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Kill-Demodogs"><span class="nav-number">2.</span> <span class="nav-text">B. Kill Demodogs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Even-Subarrays"><span class="nav-number">3.</span> <span class="nav-text">C. Even Subarrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-Valiant’s-New-Map"><span class="nav-number">4.</span> <span class="nav-text">D. Valiant’s New Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-Graph-Cost"><span class="nav-number">5.</span> <span class="nav-text">E. Graph Cost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#총평"><span class="nav-number">6.</span> <span class="nav-text">총평</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
